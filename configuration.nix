@@ -103,7 +103,7 @@ in
   users.users.${user} = {
     isNormalUser = true;
     description = "${user}";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "docker" ];
     packages = with pkgs; [
       firefox
     #  thunderbird
@@ -123,7 +123,10 @@ in
     unzip
 	gcc
 	i3lock
+	i3blocks
+	betterlockscreen
 	feh
+    jetbrains.idea-ultimate
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -153,6 +156,11 @@ in
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "23.05"; # Did you read the comment?
 
+  virtualisation.docker.enable = true;
+  virtualisation.docker.rootless = {
+    enable = true;
+    setSocketVariable = true;
+  };
 
   home-manager.users.${user} = { pkgs, ... }: {
     home.stateVersion = "23.05";
@@ -164,6 +172,11 @@ in
       fzf
 	  tmux
 	  nodejs_18
+	  yarn
+	  docker
+	  docker-compose
+	  kubectl
+	  azure-cli
     ];
 
     home.file.".config/nvim" = {
