@@ -10,7 +10,7 @@ in
 {
   imports =
     [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
+        /etc/nixos/hardware-configuration.nix
 	<home-manager/nixos>
     ];
 
@@ -75,8 +75,12 @@ in
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
-  # Enable sound with pipewire.
-  sound.enable = true;
+
+  sound = {
+    enable = true; # Enable sound with pipewire.
+    mediaKeys.enable = true;
+  };
+
   hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
@@ -117,6 +121,9 @@ in
     kitty
     git
     unzip
+	gcc
+	i3lock
+	feh
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -148,10 +155,37 @@ in
 
 
   home-manager.users.${user} = { pkgs, ... }: {
+    home.stateVersion = "23.05";
+
     home.packages = with pkgs; [ 
       htop
       neovim
+      ripgrep
+      fzf
+	  tmux
+	  nodejs_18
     ];
-    home.stateVersion = "23.05";
+
+    home.file.".config/nvim" = {
+      source = ./dotfiles/private_dot_config/nvim;
+      recursive = true;
+    };
+
+
+    home.file.".config/i3" = {
+      source = ./dotfiles/private_dot_config/i3;
+      recursive = true;
+    };
+
+    home.file.".config/tmux" = {
+      source = ./dotfiles/private_dot_config/tmux;
+      recursive = true;
+    };
+
+    home.file.".config/k9s" = {
+      source = ./dotfiles/private_dot_config/k9s;
+      recursive = true;
+    };
   };
+
 }
