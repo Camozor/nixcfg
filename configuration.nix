@@ -120,6 +120,9 @@ in
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     wget
+	nerdfonts
+	lsd
+	bat
     kitty
     git
     unzip
@@ -206,10 +209,30 @@ in
       recursive = true;
     };
 
-    programs.zsh.enable = true;
-	programs.zsh.oh-my-zsh = {
-      enable = true;
-	  theme = "arrow";
+    programs = {
+      zsh = {
+	    enable = true;
+		initExtra = "source ~/.config/zsh/init.sh";
+		oh-my-zsh = {
+		  enable = true;
+		  theme = "arrow";
+		  plugins = [
+		    "git"
+		    "fzf"
+		    "z"
+		    "kubectl"
+			"vi-mode"
+		  ];
+		};
+		shellAliases = {
+		  ls = "lsd";
+		  cat = "bat";
+		};
+		shellGlobalAliases = {
+		  G = "| grep";
+		  L = "| less";
+		};
+	  };
 	};
   };
 
