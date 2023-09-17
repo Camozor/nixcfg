@@ -6,6 +6,7 @@
 
 let
   user = "camille";
+  computer = "boulot";
 in
 {
   imports =
@@ -24,7 +25,7 @@ in
   };
 
   boot.initrd.luks.devices."luks-41adbc34-9611-425a-8c6c-3b6916b4e9d6".keyFile = "/crypto_keyfile.bin";
-  networking.hostName = "nixos"; # Define your hostname.
+  networking.hostName = "${computer}"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
@@ -99,15 +100,17 @@ in
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
+  programs.zsh.enable = true;
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.${user} = {
     isNormalUser = true;
     description = "${user}";
     extraGroups = [ "networkmanager" "wheel" "docker" ];
     packages = with pkgs; [
-      firefox
-    #  thunderbird
+	  brave
     ];
+	shell = pkgs.zsh;
   };
 
   # Allow unfree packages
@@ -117,16 +120,18 @@ in
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     wget
-    brave
     kitty
     git
     unzip
 	gcc
+	cargo
 	i3lock
 	i3blocks
 	betterlockscreen
 	feh
     jetbrains.idea-ultimate
+	discord
+	slack
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -177,6 +182,7 @@ in
 	  docker-compose
 	  kubectl
 	  azure-cli
+	  openvpn
     ];
 
     home.file.".config/nvim" = {
@@ -199,6 +205,12 @@ in
       source = ./dotfiles/private_dot_config/k9s;
       recursive = true;
     };
+
+    programs.zsh.enable = true;
+	programs.zsh.oh-my-zsh = {
+      enable = true;
+	  theme = "arrow";
+	};
   };
 
 }
