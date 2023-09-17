@@ -185,6 +185,7 @@ in
 	  docker
 	  docker-compose
 	  kubectl
+	  k9s
 	  azure-cli
 	  openvpn
     ];
