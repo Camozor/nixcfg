@@ -131,6 +131,7 @@ in
 	i3lock
 	i3blocks
 	betterlockscreen
+	pavucontrol
 	feh
     jetbrains.idea-ultimate
 	discord
