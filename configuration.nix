@@ -121,6 +121,7 @@ in
   environment.systemPackages = with pkgs; [
     wget
 	nerdfonts
+	hostname-debian
 	lsd
 	bat
     kitty
@@ -186,6 +187,7 @@ in
 	  docker-compose
 	  kubectl
 	  k9s
+	  kubelogin
 	  azure-cli
 	  openvpn
     ];
