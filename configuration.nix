@@ -102,6 +102,8 @@ in
 
   programs.zsh.enable = true;
 
+  programs._1password.enable = true;
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.${user} = {
     isNormalUser = true;
@@ -120,6 +122,7 @@ in
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     wget
+	vim
 	nerdfonts
 	hostname-debian
 	lsd
@@ -134,9 +137,15 @@ in
 	betterlockscreen
 	pavucontrol
 	feh
+	jq
+	argocd
     jetbrains.idea-ultimate
 	discord
 	slack
+	spotify
+	teams
+	firefox
+	lens
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -157,6 +166,7 @@ in
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
+  networking.enableIPv6 = false;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
@@ -175,6 +185,10 @@ in
   home-manager.users.${user} = { pkgs, ... }: {
     home.stateVersion = "23.05";
 
+	home.sessionVariables = {
+      EDITOR = "nvim";
+	};
+
     home.packages = with pkgs; [ 
       htop
       neovim
@@ -190,6 +204,13 @@ in
 	  kubelogin
 	  azure-cli
 	  openvpn
+	  kubernetes-helm
+      kustomize
+	  nodePackages.zx
+	  openssl
+	  terraform
+      envsubst
+	  grafana-loki
     ];
 
     home.file.".config/nvim" = {
@@ -214,6 +235,7 @@ in
     };
 
     programs = {
+	  tmux.plugins = with pkgs; [ tmuxPlugins.vim-tmux-navigator ];
       zsh = {
 	    enable = true;
 		initExtra = "source ~/.config/zsh/init.sh";
