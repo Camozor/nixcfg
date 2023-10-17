@@ -157,6 +157,17 @@ in
   # };
 
   # List services that you want to enable:
+  services.clamav.daemon.enable = true;
+  services.clamav.updater.enable = true;
+  services.clamav.daemon.settings = {
+	TCPSocket = 3310;
+    LogTime = true;
+	LogClean = true;
+    LogSyslog = false;
+	LogVerbose = true;
+	DatabaseDirectory = "/var/lib/clamav";
+    Foreground = true;
+  };
 
   # Enable the OpenSSH daemon.
   # services.openssh.enable = true;
@@ -211,6 +222,7 @@ in
 	  terraform
       envsubst
 	  grafana-loki
+	  flameshot
     ];
 
     home.file.".config/nvim" = {
@@ -235,9 +247,9 @@ in
     };
 
     programs = {
-	  tmux.plugins = with pkgs; [ tmuxPlugins.vim-tmux-navigator ];
       zsh = {
 	    enable = true;
+		enableCompletion = true;
 		initExtra = "source ~/.config/zsh/init.sh";
 		oh-my-zsh = {
 		  enable = true;
@@ -258,6 +270,19 @@ in
 		  G = "| grep";
 		  L = "| less";
 		};
+
+		plugins = [
+		  {
+		    name = "zsh-nix-shell";
+		    file = "nix-shell.plugin.zsh";
+		    src = pkgs.fetchFromGitHub {
+		      owner = "chisui";
+		      repo = "zsh-nix-shell";
+		      rev = "v0.7.0";
+		      sha256 = "149zh2rm59blr2q458a5irkfh82y3dwdich60s9670kl3cl5h2m1";
+		    };
+		  }
+		];
 	  };
 	};
   };
