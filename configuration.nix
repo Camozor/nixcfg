@@ -7,24 +7,21 @@
 let
   user = "camille";
   computer = "boulot";
-in
-{
-  imports =
-    [ # Include the results of the hardware scan.
-        /etc/nixos/hardware-configuration.nix
-	<home-manager/nixos>
-    ];
+in {
+  imports = [ # Include the results of the hardware scan.
+    /etc/nixos/hardware-configuration.nix
+    <home-manager/nixos>
+  ];
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
   # Setup keyfile
-  boot.initrd.secrets = {
-    "/crypto_keyfile.bin" = null;
-  };
+  boot.initrd.secrets = { "/crypto_keyfile.bin" = null; };
 
-  boot.initrd.luks.devices."luks-41adbc34-9611-425a-8c6c-3b6916b4e9d6".keyFile = "/crypto_keyfile.bin";
+  boot.initrd.luks.devices."luks-41adbc34-9611-425a-8c6c-3b6916b4e9d6".keyFile =
+    "/crypto_keyfile.bin";
   networking.hostName = "${computer}"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
@@ -53,7 +50,6 @@ in
     LC_TIME = "fr_FR.UTF-8";
   };
 
-
   services.xserver = {
     enable = true; # Enable the X11 windowing system.
     displayManager.defaultSession = "none+i3";
@@ -75,7 +71,6 @@ in
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
-
 
   sound = {
     enable = true; # Enable sound with pipewire.
@@ -109,10 +104,8 @@ in
     isNormalUser = true;
     description = "${user}";
     extraGroups = [ "networkmanager" "wheel" "docker" ];
-    packages = with pkgs; [
-	  brave
-    ];
-	shell = pkgs.zsh;
+    packages = with pkgs; [ brave ];
+    shell = pkgs.zsh;
   };
 
   # Allow unfree packages
@@ -122,30 +115,31 @@ in
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     wget
-	vim
-	nerdfonts
-	hostname-debian
-	lsd
-	bat
+    vim
+    nerdfonts
+    hostname-debian
+    lsd
+    bat
     kitty
     git
     unzip
-	gcc
-	cargo
-	i3lock
-	i3blocks
-	betterlockscreen
-	pavucontrol
-	feh
-	jq
-	argocd
+    gcc
+    cargo
+    i3lock
+    i3blocks
+    betterlockscreen
+    pavucontrol
+    feh
+    jq
+    argocd
     jetbrains.idea-ultimate
-	discord
-	slack
-	spotify
-	teams
-	firefox
-	gnumake
+    discord
+    slack
+    spotify
+    teams
+    firefox
+    gnumake
+    nixfmt
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -160,12 +154,12 @@ in
   services.clamav.daemon.enable = true;
   services.clamav.updater.enable = true;
   services.clamav.daemon.settings = {
-	TCPSocket = 3310;
+    TCPSocket = 3310;
     LogTime = true;
-	LogClean = true;
+    LogClean = true;
     LogSyslog = false;
-	LogVerbose = true;
-	DatabaseDirectory = "/var/lib/clamav";
+    LogVerbose = true;
+    DatabaseDirectory = "/var/lib/clamav";
     Foreground = true;
   };
 
@@ -196,40 +190,37 @@ in
   home-manager.users.${user} = { pkgs, ... }: {
     home.stateVersion = "23.05";
 
-	home.sessionVariables = {
-      EDITOR = "nvim";
-	};
+    home.sessionVariables = { EDITOR = "nvim"; };
 
-    home.packages = with pkgs; [ 
+    home.packages = with pkgs; [
       htop
       neovim
       ripgrep
       fzf
-	  tmux
-	  nodejs_18
-	  yarn
-	  docker
-	  docker-compose
-	  kubectl
-	  k9s
-	  kubelogin
-	  azure-cli
-	  openvpn
-	  kubernetes-helm
+      tmux
+      nodejs_18
+      yarn
+      docker
+      docker-compose
+      kubectl
+      k9s
+      kubelogin
+      azure-cli
+      openvpn
+      kubernetes-helm
       kustomize
-	  nodePackages.zx
-	  openssl
-	  terraform
+      nodePackages.zx
+      openssl
+      terraform
       envsubst
-	  grafana-loki
-	  flameshot
+      grafana-loki
+      flameshot
     ];
 
     home.file.".config/nvim" = {
       source = ./dotfiles/private_dot_config/nvim;
       recursive = true;
     };
-
 
     home.file.".config/i3" = {
       source = ./dotfiles/private_dot_config/i3;
@@ -248,43 +239,35 @@ in
 
     programs = {
       zsh = {
-	    enable = true;
-		enableCompletion = true;
-		initExtra = "source ~/.config/zsh/init.sh";
-		oh-my-zsh = {
-		  enable = true;
-		  theme = "arrow";
-		  plugins = [
-		    "git"
-		    "fzf"
-		    "z"
-		    "kubectl"
-			"vi-mode"
-		  ];
-		};
-		shellAliases = {
-		  ls = "lsd";
-		  cat = "bat";
-		};
-		shellGlobalAliases = {
-		  G = "| grep";
-		  L = "| less";
-		};
+        enable = true;
+        enableCompletion = true;
+        initExtra = "source ~/.config/zsh/init.sh";
+        oh-my-zsh = {
+          enable = true;
+          theme = "arrow";
+          plugins = [ "git" "fzf" "z" "kubectl" "vi-mode" ];
+        };
+        shellAliases = {
+          ls = "lsd";
+          cat = "bat";
+        };
+        shellGlobalAliases = {
+          G = "| grep";
+          L = "| less";
+        };
 
-		plugins = [
-		  {
-		    name = "zsh-nix-shell";
-		    file = "nix-shell.plugin.zsh";
-		    src = pkgs.fetchFromGitHub {
-		      owner = "chisui";
-		      repo = "zsh-nix-shell";
-		      rev = "v0.7.0";
-		      sha256 = "149zh2rm59blr2q458a5irkfh82y3dwdich60s9670kl3cl5h2m1";
-		    };
-		  }
-		];
-	  };
-	};
+        plugins = [{
+          name = "zsh-nix-shell";
+          file = "nix-shell.plugin.zsh";
+          src = pkgs.fetchFromGitHub {
+            owner = "chisui";
+            repo = "zsh-nix-shell";
+            rev = "v0.7.0";
+            sha256 = "149zh2rm59blr2q458a5irkfh82y3dwdich60s9670kl3cl5h2m1";
+          };
+        }];
+      };
+    };
   };
 
 }
