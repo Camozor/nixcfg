@@ -96,6 +96,7 @@ in {
   # services.xserver.libinput.enable = true;
 
   programs.zsh.enable = true;
+  programs.zsh.syntaxHighlighting.enable = true;
 
   programs._1password.enable = true;
 
@@ -215,6 +216,7 @@ in {
       envsubst
       grafana-loki
       flameshot
+	  stern
     ];
 
     home.file.".config/nvim" = {
