@@ -217,6 +217,7 @@ in {
       grafana-loki
       flameshot
 	  stern
+	  stylua
     ];
 
     home.file.".config/nvim" = {
