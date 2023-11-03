@@ -143,6 +143,7 @@ in {
     firefox
     gnumake
     nixfmt
+    pulseaudio
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -218,14 +219,10 @@ in {
       envsubst
       grafana-loki
       flameshot
-	  stern
-	  stylua
+      stern
+      stylua
+      tldr
     ];
-
-    home.file.".config/nvim" = {
-      source = ./dotfiles/private_dot_config/nvim;
-      recursive = true;
-    };
 
     home.file.".config/i3" = {
       source = ./dotfiles/private_dot_config/i3;
