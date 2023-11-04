@@ -107,7 +107,6 @@ in {
     isNormalUser = true;
     description = "${user}";
     extraGroups = [ "networkmanager" "wheel" "docker" ];
-    packages = with pkgs; [ brave ];
     shell = pkgs.zsh;
   };
 
@@ -139,7 +138,6 @@ in {
     discord
     slack
     spotify
-    teams
     firefox
     gnumake
     nixfmt
@@ -197,6 +195,7 @@ in {
     home.sessionVariables = { EDITOR = "nvim"; };
 
     home.packages = with pkgs; [
+	  brave
       htop
       neovim
       ripgrep
@@ -222,6 +221,7 @@ in {
       stern
       stylua
       tldr
+	  zathura
     ];
 
     home.file.".config/i3" = {
