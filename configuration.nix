@@ -7,8 +7,10 @@
 let
   user = "camille";
   computer = "boulot";
-in {
-  imports = [ # Include the results of the hardware scan.
+in
+{
+  imports = [
+    # Include the results of the hardware scan.
     /etc/nixos/hardware-configuration.nix
     <home-manager/nixos>
   ];
@@ -126,6 +128,7 @@ in {
     git
     unzip
     gcc
+    go
     cargo
     i3lock
     i3blocks
@@ -142,6 +145,13 @@ in {
     gnumake
     nixfmt
     pulseaudio
+    terraform
+    yazi
+    ffmpegthumbnailer
+    unar
+    poppler
+    fd
+    alacritty
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -195,7 +205,7 @@ in {
     home.sessionVariables = { EDITOR = "nvim"; };
 
     home.packages = with pkgs; [
-	  brave
+      brave
       htop
       neovim
       ripgrep
@@ -214,14 +224,13 @@ in {
       kustomize
       nodePackages.zx
       openssl
-      terraform
       envsubst
       grafana-loki
       flameshot
       stern
       stylua
       tldr
-	  zathura
+      zathura
     ];
 
     home.file.".config/i3" = {
@@ -271,5 +280,4 @@ in {
       };
     };
   };
-
 }
