@@ -146,12 +146,10 @@ in
     nixfmt
     pulseaudio
     terraform
-    yazi
     ffmpegthumbnailer
     unar
     poppler
     fd
-    alacritty
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -218,7 +216,6 @@ in
       kubectl
       k9s
       kubelogin
-      azure-cli
       openvpn
       kubernetes-helm
       kustomize
@@ -249,6 +246,10 @@ in
     };
 
     programs = {
+	  yazi = {
+		enable = true;
+		enableZshIntegration = true;
+	  };
       zsh = {
         enable = true;
         enableCompletion = true;
@@ -261,6 +262,8 @@ in
         shellAliases = {
           ls = "lsd";
           cat = "bat";
+          y = "yazi";
+          screenshot = "flameshot gui -d 2000";
         };
         shellGlobalAliases = {
           G = "| grep";
