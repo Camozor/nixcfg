@@ -150,6 +150,8 @@ in
     unar
     poppler
     fd
+    azure-cli
+    libreoffice
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -246,10 +248,10 @@ in
     };
 
     programs = {
-	  yazi = {
-		enable = true;
-		enableZshIntegration = true;
-	  };
+      yazi = {
+        enable = true;
+        enableZshIntegration = true;
+      };
       zsh = {
         enable = true;
         enableCompletion = true;
