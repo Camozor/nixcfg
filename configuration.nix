@@ -7,8 +7,7 @@
 let
   user = "camille";
   computer = "boulot";
-in
-{
+in {
   imports = [
     # Include the results of the hardware scan.
     /etc/nixos/hardware-configuration.nix
@@ -230,6 +229,8 @@ in
       stylua
       tldr
       zathura
+      bruno
+      beekeeper-studio
     ];
 
     home.file.".config/i3" = {
