@@ -151,6 +151,7 @@ in {
     fd
     azure-cli
     libreoffice
+    teams-for-linux
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
