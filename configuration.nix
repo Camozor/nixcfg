@@ -93,7 +93,7 @@ in {
   users.users.${user} = {
     isNormalUser = true;
     description = "${user}";
-    extraGroups = [ "networkmanager" "wheel" "docker" ];
+    extraGroups = [ "networkmanager" "wheel" "docker" "libvirtd" ];
     shell = pkgs.zsh;
   };
 
@@ -103,6 +103,9 @@ in {
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
+    man-pages
+    man-pages-posix
+    ascii
     wget
     vim
     nerdfonts
@@ -138,7 +141,13 @@ in {
     azure-cli
     libreoffice
     teams-for-linux
+    virt-manager
+    qemu
+    ollama
+    python3
   ];
+
+  documentation.dev.enable = true;
 
   # List services that you want to enable:
   services.clamav.daemon.enable = true;
@@ -168,6 +177,9 @@ in {
     enable = true;
     setSocketVariable = true;
   };
+
+  virtualisation.libvirtd.enable = true;
+  programs.virt-manager.enable = true;
 
   home-manager.users.${user} = { pkgs, ... }: {
     home.stateVersion = "23.05";
@@ -243,6 +255,7 @@ in {
           cat = "bat";
           y = "yazi";
           screenshot = "flameshot gui -d 2000";
+          v = "nvim";
         };
         shellGlobalAliases = {
           G = "| grep";
