@@ -25,6 +25,12 @@ in {
     "/crypto_keyfile.bin";
   networking.hostName = "${computer}"; # Define your hostname.
 
+  networking.extraHosts = ''
+    127.0.0.1 localhost
+    127.0.0.1 esg
+    127.0.0.1 neomi
+  '';
+
   # Enable networking
   networking.networkmanager.enable = true;
 
@@ -118,6 +124,7 @@ in {
     gcc
     go
     cargo
+    rustc
     i3lock
     i3blocks
     betterlockscreen
@@ -193,7 +200,7 @@ in {
       ripgrep
       fzf
       tmux
-      nodejs_18
+      nodejs_20
       yarn
       docker
       docker-compose
