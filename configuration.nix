@@ -150,7 +150,6 @@ in {
     teams-for-linux
     virt-manager
     qemu
-    ollama
     python3
   ];
 
