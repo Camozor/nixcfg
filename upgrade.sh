@@ -1,4 +1,4 @@
 #!/usr/bin/env sh
 
-sudo nixos-rebuild switch --upgrade                                                                                                                                                              git:main*
+sudo nixos-rebuild switch --upgrade
 

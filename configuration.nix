@@ -123,6 +123,7 @@ in {
     unzip
     gcc
     go
+    air
     cargo
     rustc
     i3lock
@@ -220,22 +221,9 @@ in {
       zathura
       bruno
       beekeeper-studio
+      rclone
+      ansible_2_15
     ];
-
-    home.file.".config/i3" = {
-      source = ./dotfiles/private_dot_config/i3;
-      recursive = true;
-    };
-
-    home.file.".config/tmux" = {
-      source = ./dotfiles/private_dot_config/tmux;
-      recursive = true;
-    };
-
-    home.file.".config/k9s" = {
-      source = ./dotfiles/private_dot_config/k9s;
-      recursive = true;
-    };
 
     programs = {
       direnv = {
