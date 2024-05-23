@@ -152,6 +152,8 @@ in {
     virt-manager
     qemu
     python3
+    ocaml
+    opam
   ];
 
   documentation.dev.enable = true;
@@ -189,7 +191,7 @@ in {
   programs.virt-manager.enable = true;
 
   home-manager.users.${user} = { pkgs, ... }: {
-    home.stateVersion = "23.05";
+    home.stateVersion = "23.11";
 
     home.sessionVariables = { EDITOR = "nvim"; };
 
