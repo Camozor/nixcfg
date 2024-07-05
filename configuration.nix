@@ -154,6 +154,8 @@ in {
     python3
     ocaml
     opam
+    vlc
+    obsidian
   ];
 
   documentation.dev.enable = true;
@@ -225,6 +227,7 @@ in {
       beekeeper-studio
       rclone
       ansible_2_15
+      xclip
     ];
 
     programs = {
@@ -252,6 +255,7 @@ in {
           y = "yazi";
           screenshot = "flameshot gui -d 2000";
           v = "nvim";
+          s = "nvim $(fzf --preview='bat --color=always {}')";
         };
         shellGlobalAliases = {
           G = "| grep";
