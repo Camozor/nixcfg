@@ -260,6 +260,7 @@ in {
         shellGlobalAliases = {
           G = "| grep";
           L = "| less";
+          C = "| xargs echo -n | xclip -selection clipboard";
         };
 
         plugins = [{
