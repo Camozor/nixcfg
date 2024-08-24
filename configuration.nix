@@ -25,6 +25,8 @@ in {
     "/crypto_keyfile.bin";
   networking.hostName = "${computer}"; # Define your hostname.
 
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+
   networking.extraHosts = ''
     127.0.0.1 localhost
     127.0.0.1 esg
@@ -134,6 +136,8 @@ in {
     jq
     argocd
     jetbrains.idea-ultimate
+    vscode
+    gdb
     discord
     slack
     spotify
@@ -157,6 +161,8 @@ in {
     vlc
     obsidian
   ];
+
+  environment.wordlist.enable = true;
 
   documentation.dev.enable = true;
 
@@ -256,6 +262,7 @@ in {
           screenshot = "flameshot gui -d 2000";
           v = "nvim";
           s = "nvim $(fzf --preview='bat --color=always {}')";
+          gpskip = "git push -o ci.skip";
         };
         shellGlobalAliases = {
           G = "| grep";
