@@ -156,8 +156,6 @@ in {
     virt-manager
     qemu
     python3
-    ocaml
-    opam
     vlc
     obsidian
   ];
