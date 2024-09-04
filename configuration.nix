@@ -33,6 +33,13 @@ in {
     127.0.0.1 neomi
   '';
 
+  programs.hyprland = {
+    # Install the packages from nixpkgs
+    enable = true;
+    # Whether to enable XWayland
+    xwayland.enable = true;
+  };
+
   # Enable networking
   networking.networkmanager.enable = true;
 
@@ -52,22 +59,6 @@ in {
     LC_PAPER = "fr_FR.UTF-8";
     LC_TELEPHONE = "fr_FR.UTF-8";
     LC_TIME = "fr_FR.UTF-8";
-  };
-
-  services.xserver = {
-    enable = true; # Enable the X11 windowing system.
-    displayManager.defaultSession = "none+i3";
-    windowManager.i3.enable = true;
-  };
-
-  # Enable the GNOME Desktop Environment.
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
-
-  # Configure keymap in X11
-  services.xserver = {
-    layout = "fr";
-    xkbVariant = "";
   };
 
   # Configure console keymap
