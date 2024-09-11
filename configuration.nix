@@ -39,6 +39,9 @@ in {
   };
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
+  services.xserver.enable = true;
+  services.displayManager.sddm.wayland.enable = true;
+
   services.dbus.enable = true;
   xdg.portal = {
     enable = true;
@@ -165,9 +168,10 @@ in {
     wlroots
     rofi-wayland
     wofi
+    waybar
   ];
 
-  fonts.fonts = with pkgs; [ nerdfonts meslo-lgs-nf ];
+  fonts.packages = with pkgs; [ nerdfonts meslo-lgs-nf ];
 
   documentation.dev.enable = true;
 
