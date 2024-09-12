@@ -169,6 +169,7 @@ in {
     rofi-wayland
     wofi
     waybar
+    dunst
   ];
 
   fonts.packages = with pkgs; [ nerdfonts meslo-lgs-nf ];
