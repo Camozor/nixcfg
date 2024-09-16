@@ -157,6 +157,8 @@ in {
     obsidian
 
     hyprland
+    hyprlock
+    hyprpaper
     swww
     xdg-desktop-portal-gtk
     xdg-desktop-portal-hyprland
