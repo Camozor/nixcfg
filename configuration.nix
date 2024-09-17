@@ -171,6 +171,9 @@ in {
     wofi
     waybar
     dunst
+    libnotify
+    grim
+    slurp
   ];
 
   fonts.packages = with pkgs; [ nerdfonts meslo-lgs-nf ];
@@ -235,7 +238,6 @@ in {
       openssl
       envsubst
       grafana-loki
-      flameshot
       stern
       stylua
       tldr
@@ -270,7 +272,6 @@ in {
           ls = "lsd";
           cat = "bat";
           y = "yazi";
-          screenshot = "flameshot gui -d 2000";
           v = "nvim";
           s = "nvim $(fzf --preview='bat --color=always {}')";
           gpskip = "git push -o ci.skip";
