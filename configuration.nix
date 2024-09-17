@@ -55,9 +55,7 @@ in {
   # Set your time zone.
   time.timeZone = "Europe/Paris";
 
-  # Select internationalisation properties.
-  i18n.defaultLocale = "en_US.UTF-8";
-
+  i18n.defaultLocale = "fr_FR.UTF-8";
   i18n.extraLocaleSettings = {
     LC_ADDRESS = "fr_FR.UTF-8";
     LC_IDENTIFICATION = "fr_FR.UTF-8";
@@ -129,6 +127,7 @@ in {
     cargo
     rustc
     pavucontrol
+    pamixer
     feh
     jq
     argocd
@@ -279,7 +278,7 @@ in {
         shellGlobalAliases = {
           G = "| grep";
           L = "| less";
-          C = "| xargs echo -n | xclip -selection clipboard";
+          C = "| xargs echo -n | wl-copy";
         };
 
         plugins = [{
