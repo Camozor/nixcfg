@@ -39,8 +39,16 @@ in {
   };
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
-  services.xserver.enable = true;
+  services.xserver = {
+    enable = true;
+    xkb.layout = "fr";
+  };
+
   services.displayManager.sddm.wayland.enable = true;
+
+  services.displayManager.sddm.settings = {
+    Input = { KeyboardLayout = "fr"; };
+  };
 
   services.dbus.enable = true;
   xdg.portal = {
@@ -48,6 +56,8 @@ in {
     wlr.enable = true;
     extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
   };
+
+  programs.thunar.enable = true;
 
   # Enable networking
   networking.networkmanager.enable = true;
