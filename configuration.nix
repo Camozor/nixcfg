@@ -4,15 +4,9 @@
 
 { config, pkgs, ... }:
 
-let
-  user = "camille";
-  computer = "boulot";
+let user = "camille";
 in {
-  imports = [
-    # Include the results of the hardware scan.
-    /etc/nixos/hardware-configuration.nix
-    <home-manager/nixos>
-  ];
+  imports = [ <home-manager/nixos> ];
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -23,7 +17,6 @@ in {
 
   boot.initrd.luks.devices."luks-41adbc34-9611-425a-8c6c-3b6916b4e9d6".keyFile =
     "/crypto_keyfile.bin";
-  networking.hostName = "${computer}"; # Define your hostname.
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
