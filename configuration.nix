@@ -136,7 +136,6 @@ in {
     vscode
     gdb
     discord
-    slack
     spotify
     firefox
     gnumake
@@ -154,7 +153,6 @@ in {
     qemu
     python3
     vlc
-    obsidian
 
     hyprland
     hyprlock
