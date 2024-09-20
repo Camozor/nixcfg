@@ -6,8 +6,6 @@
 
 let user = "camille";
 in {
-  imports = [ <home-manager/nixos> ];
-
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -214,88 +212,4 @@ in {
 
   virtualisation.libvirtd.enable = true;
   programs.virt-manager.enable = true;
-
-  home-manager.users.${user} = { pkgs, ... }: {
-    home.stateVersion = "23.11";
-
-    home.sessionVariables = { EDITOR = "nvim"; };
-
-    home.packages = with pkgs; [
-      brave
-      htop
-      neovim
-      ripgrep
-      fzf
-      tmux
-      nodejs_20
-      yarn
-      docker
-      docker-compose
-      kubectl
-      k9s
-      kubelogin
-      openvpn
-      kubernetes-helm
-      kustomize
-      nodePackages.zx
-      openssl
-      envsubst
-      grafana-loki
-      stern
-      stylua
-      tldr
-      zathura
-      bruno
-      beekeeper-studio
-      rclone
-      ansible_2_15
-      xclip
-    ];
-
-    programs = {
-      direnv = {
-        enable = true;
-        enableZshIntegration = true;
-        nix-direnv.enable = true;
-      };
-      yazi = {
-        enable = true;
-        enableZshIntegration = true;
-      };
-      zsh = {
-        enable = true;
-        enableCompletion = true;
-        initExtra = "source ~/.config/zsh/init.sh";
-        oh-my-zsh = {
-          enable = true;
-          theme = "arrow";
-          plugins = [ "git" "fzf" "z" "kubectl" "vi-mode" ];
-        };
-        shellAliases = {
-          ls = "lsd";
-          cat = "bat";
-          y = "yazi";
-          v = "nvim";
-          s = "nvim $(fzf --preview='bat --color=always {}')";
-          gpskip = "git push -o ci.skip";
-        };
-        shellGlobalAliases = {
-          G = "| grep";
-          L = "| less";
-          C = "| xargs echo -n | wl-copy";
-        };
-
-        plugins = [{
-          name = "zsh-nix-shell";
-          file = "nix-shell.plugin.zsh";
-          src = pkgs.fetchFromGitHub {
-            owner = "chisui";
-            repo = "zsh-nix-shell";
-            rev = "v0.7.0";
-            sha256 = "149zh2rm59blr2q458a5irkfh82y3dwdich60s9670kl3cl5h2m1";
-          };
-        }];
-      };
-    };
-  };
 }
