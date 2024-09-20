@@ -17,5 +17,10 @@
     nixfmt-classic
 
     terraform
+
+    stylua
+
+    nodejs_20
+    yarn
   ];
 }

@@ -10,6 +10,7 @@
     htop
     bottom
     wget
+    envsubst
     man-pages
     man-pages-posix
     lsd
@@ -21,6 +22,7 @@
     fd
     fzf
     ripgrep
+    tldr
     tmux
   ];
 }

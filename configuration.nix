@@ -2,30 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ pkgs, ... }: {
-
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
-
-  # Enable networking
-  networking.networkmanager.enable = true;
-
-  # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
-
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
-  environment.systemPackages = with pkgs; [
-    firefox
-    azure-cli
-    libreoffice
-    virt-manager
-    qemu
-    brave
-  ];
-
-  documentation.dev.enable = true;
-
-  networking.enableIPv6 = false;
+{ ... }: {
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

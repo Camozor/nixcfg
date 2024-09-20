@@ -11,6 +11,16 @@
   # Let home Manager install and manage itself.
   programs.home-manager.enable = true;
 
+  home.packages = with pkgs; [
+    firefox
+    brave
+    libreoffice
+    openvpn
+    beekeeper-studio
+    zathura
+    bruno
+  ];
+
   programs = {
     direnv = {
       enable = true;
