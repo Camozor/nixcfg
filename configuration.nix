@@ -2,8 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
-
+{ pkgs, ... }:
 let user = "camille";
 in {
   # Bootloader.
@@ -24,29 +23,7 @@ in {
     127.0.0.1 neomi
   '';
 
-  programs.hyprland = {
-    enable = true;
-    xwayland.enable = true;
-  };
-  environment.sessionVariables.NIXOS_OZONE_WL = "1";
-
-  services.xserver = {
-    enable = true;
-    xkb.layout = "fr";
-  };
-
-  services.displayManager.sddm.wayland.enable = true;
-
-  services.displayManager.sddm.settings = {
-    Input = { KeyboardLayout = "fr"; };
-  };
-
   services.dbus.enable = true;
-  xdg.portal = {
-    enable = true;
-    wlr.enable = true;
-    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
-  };
 
   programs.thunar.enable = true;
 
@@ -114,7 +91,6 @@ in {
     man-pages-posix
     ascii
     wget
-    vim
     nerdfonts
     hostname-debian
     lsd
@@ -132,14 +108,12 @@ in {
     feh
     jq
     argocd
-    jetbrains.idea-ultimate
-    vscode
     gdb
     discord
     spotify
     firefox
     gnumake
-    nixfmt
+    nixfmt-classic
     pulseaudio
     terraform
     ffmpegthumbnailer
@@ -154,43 +128,14 @@ in {
     python3
     vlc
 
-    hyprland
-    hyprlock
-    hyprpaper
-    swww
-    xdg-desktop-portal-gtk
-    xdg-desktop-portal-hyprland
-    xwayland
-    meson
-    wayland-protocols
-    wayland-utils
-    wl-clipboard
-    wlroots
-    rofi-wayland
-    wofi
-    waybar
-    dunst
-    libnotify
-    grim
-    slurp
+    brave
+    tmux
+	fzf
   ];
 
   fonts.packages = with pkgs; [ nerdfonts meslo-lgs-nf ];
 
   documentation.dev.enable = true;
-
-  # List services that you want to enable:
-  services.clamav.daemon.enable = true;
-  services.clamav.updater.enable = true;
-  services.clamav.daemon.settings = {
-    TCPSocket = 3310;
-    LogTime = true;
-    LogClean = true;
-    LogSyslog = false;
-    LogVerbose = true;
-    DatabaseDirectory = "/var/lib/clamav";
-    Foreground = true;
-  };
 
   networking.enableIPv6 = false;
 
