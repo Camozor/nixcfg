@@ -24,11 +24,15 @@
           home-manager.users.camille = import ./home.nix;
         }
 
+        ./modules/bootloader.nix
+        ./modules/fonts.nix
         ./modules/hyprland.nix
-        ./modules/ide.nix
         ./modules/i18n.nix
+        ./modules/ide.nix
+        ./modules/programming-languages.nix
         ./modules/sound.nix
         ./modules/terminal-utils.nix
+        ./modules/work.nix
       ];
     };
   };

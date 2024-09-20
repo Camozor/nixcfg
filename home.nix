@@ -5,7 +5,6 @@
   home.homeDirectory = "/home/camille";
 
   home.sessionVariables = { EDITOR = "nvim"; };
-  home.packages = with pkgs; [ htop ];
 
   home.stateVersion = "24.05";
 

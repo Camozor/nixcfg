@@ -8,12 +8,6 @@ in {
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
-  networking.extraHosts = ''
-    127.0.0.1 localhost
-    127.0.0.1 esg
-    127.0.0.1 neomi
-  '';
-
   services.dbus.enable = true;
 
   programs.thunar.enable = true;
@@ -23,9 +17,6 @@ in {
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
-
-  programs.zsh.enable = true;
-  programs.zsh.syntaxHighlighting.enable = true;
 
   programs._1password.enable = true;
 
@@ -45,25 +36,11 @@ in {
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    kitty
-    gcc
-    go
-    air
-    cargo
-    rustc
-    argocd
-    gdb
-    discord
     firefox
-    gnumake
-    nixfmt-classic
-    terraform
     azure-cli
     libreoffice
-    teams-for-linux
     virt-manager
     qemu
-    python3
     brave
   ];
 
