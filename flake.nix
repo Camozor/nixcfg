@@ -9,22 +9,21 @@
     };
   };
 
-  outputs = { nixpkgs, home-manager, ... }@inputs: {
+  outputs = { nixpkgs, home-manager, ... }: {
     nixosConfigurations.boulot = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       modules = [
-        ./hardware-configuration.nix
-
         home-manager.nixosModules.home-manager
         {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
 
-          home-manager.users.camille = import ./home.nix;
+          home-manager.users.camille = import ./modules/home.nix;
         }
 
         ./modules/bootloader.nix
         ./modules/fonts.nix
+        ./modules/hardware-configuration.nix
         ./modules/hyprland.nix
         ./modules/i18n.nix
         ./modules/nix.nix
