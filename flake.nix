@@ -26,6 +26,9 @@
 
         ./modules/hyprland.nix
         ./modules/ide.nix
+        ./modules/i18n.nix
+        ./modules/sound.nix
+        ./modules/terminal-utils.nix
       ];
     };
   };

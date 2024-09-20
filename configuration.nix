@@ -5,15 +5,6 @@
 { pkgs, ... }:
 let user = "camille";
 in {
-  # Bootloader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-
-  # Setup keyfile
-  boot.initrd.secrets = { "/crypto_keyfile.bin" = null; };
-
-  boot.initrd.luks.devices."luks-41adbc34-9611-425a-8c6c-3b6916b4e9d6".keyFile =
-    "/crypto_keyfile.bin";
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
@@ -30,41 +21,8 @@ in {
   # Enable networking
   networking.networkmanager.enable = true;
 
-  # Set your time zone.
-  time.timeZone = "Europe/Paris";
-
-  i18n.defaultLocale = "fr_FR.UTF-8";
-  i18n.extraLocaleSettings = {
-    LC_ADDRESS = "fr_FR.UTF-8";
-    LC_IDENTIFICATION = "fr_FR.UTF-8";
-    LC_MEASUREMENT = "fr_FR.UTF-8";
-    LC_MONETARY = "fr_FR.UTF-8";
-    LC_NAME = "fr_FR.UTF-8";
-    LC_NUMERIC = "fr_FR.UTF-8";
-    LC_PAPER = "fr_FR.UTF-8";
-    LC_TELEPHONE = "fr_FR.UTF-8";
-    LC_TIME = "fr_FR.UTF-8";
-  };
-
-  # Configure console keymap
-  console.keyMap = "fr";
-
   # Enable CUPS to print documents.
   services.printing.enable = true;
-
-  sound = {
-    enable = true; # Enable sound with pipewire.
-    mediaKeys.enable = true;
-  };
-
-  hardware.pulseaudio.enable = false;
-  security.rtkit.enable = true;
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-  };
 
   programs.zsh.enable = true;
   programs.zsh.syntaxHighlighting.enable = true;
@@ -87,53 +45,27 @@ in {
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    man-pages
-    man-pages-posix
-    ascii
-    wget
-    nerdfonts
-    hostname-debian
-    lsd
-    bat
     kitty
-    git
-    unzip
     gcc
     go
     air
     cargo
     rustc
-    pavucontrol
-    pamixer
-    feh
-    jq
     argocd
     gdb
     discord
-    spotify
     firefox
     gnumake
     nixfmt-classic
-    pulseaudio
     terraform
-    ffmpegthumbnailer
-    unar
-    poppler
-    fd
     azure-cli
     libreoffice
     teams-for-linux
     virt-manager
     qemu
     python3
-    vlc
-
     brave
-    tmux
-	fzf
   ];
-
-  fonts.packages = with pkgs; [ nerdfonts meslo-lgs-nf ];
 
   documentation.dev.enable = true;
 
