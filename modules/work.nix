@@ -8,5 +8,5 @@
   '';
   networking.enableIPv6 = false;
 
-  environment.systemPackages = with pkgs; [ discord teams-for-linux azure-cli ];
+  environment.systemPackages = with pkgs; [ teams-for-linux azure-cli ];
 }

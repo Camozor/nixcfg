@@ -1,8 +1,9 @@
 { pkgs, ... }:
 
-{
-  home.username = "camille";
-  home.homeDirectory = "/home/camille";
+let user = "camille";
+in {
+  home.username = "${user}";
+  home.homeDirectory = "/home/${user}";
 
   home.sessionVariables = { EDITOR = "nvim"; };
 
@@ -19,6 +20,7 @@
     beekeeper-studio
     zathura
     bruno
+    discord
   ];
 
   programs = {
@@ -66,4 +68,6 @@
       }];
     };
   };
+
+  home.file.".config/i3".source = "${dotfiles}.private_dot_config/i3";
 }
