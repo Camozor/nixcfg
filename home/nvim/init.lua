@@ -129,28 +129,6 @@ require("lazy").setup({
 	},
 	{ "nvim-pack/nvim-spectre", dependencies = { "nvim-lua/plenary.nvim" } },
 	{
-		"nvim-neorg/neorg",
-		build = ":Neorg sync-parsers",
-		-- tag = "*",
-		dependencies = { "nvim-lua/plenary.nvim" },
-		config = function()
-			require("neorg").setup({
-				load = {
-					["core.defaults"] = {}, -- Loads default behaviour
-					["core.concealer"] = {}, -- Adds pretty icons to your documents
-					["core.dirman"] = { -- Manages Neorg workspaces
-						config = {
-							workspaces = {
-								notes = "~/perso/notes",
-							},
-							default_workspace = "notes",
-						},
-					},
-				},
-			})
-		end,
-	},
-	{
 		"iamcco/markdown-preview.nvim",
 		cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
 		ft = { "markdown" },
