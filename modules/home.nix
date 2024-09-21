@@ -69,5 +69,11 @@ in {
     };
   };
 
-  home.file.".config/i3".source = "${dotfiles}.private_dot_config/i3";
+  home.file.".config/dunst".source = ../home/dunst;
+  home.file.".config/hypr".source = ../home/hypr;
+  home.file.".config/k9s".source = ../home/k9s;
+  home.file.".config/nvim".source = ../home/nvim;
+  home.file.".config/tmux".source = ../home/tmux;
+  home.file.".config/waybar".source = ../home/waybar;
+  home.file.".config/yazi".source = ../home/yazi;
 }
