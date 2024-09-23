@@ -40,7 +40,7 @@ lsp.on_attach(function(_, bufnr)
 end)
 
 local servers = {
-	tsserver = {},
+	ts_ls = {},
 	volar = {},
 	lua_ls = {
 		Lua = {

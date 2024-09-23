@@ -11,6 +11,7 @@
 
     cargo
     rustc
+    rustfmt
 
     python3
 
