@@ -1,8 +1,8 @@
-{ pkgs, ... }:
+{ pkgs, pkgs-unstable, ... }:
 
 {
   environment.systemPackages = with pkgs; [
-    neovim
+    pkgs-unstable.neovim
     vim
     vscode
     jetbrains.idea-ultimate
