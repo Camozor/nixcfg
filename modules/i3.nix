@@ -20,5 +20,10 @@
   # Configure console keymap
   console.keyMap = "fr";
 
-  environment.systemPackages = with pkgs; [ i3lock i3blocks betterlockscreen ];
+  environment.systemPackages = with pkgs; [
+    i3lock
+    i3blocks
+    betterlockscreen
+    flameshot
+  ];
 }

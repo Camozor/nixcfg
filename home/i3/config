@@ -262,3 +262,5 @@ bindsym Control+F10 exec xrandr --output eDP-1 --brightness 1
 bindsym Control+F11 exec xrandr --output eDP-1 --brightness 0
 bindsym Control+F12 exec xrandr --output $(xrandr | grep " connected " | awk '{ print$1 }' | grep -Eo "^DP-[0-9]$") --mode 1920x1080 --same-as eDP-1
 
+bindsym Control+Print exec flameshot gui
+
