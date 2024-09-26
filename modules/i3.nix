@@ -25,5 +25,6 @@
     i3blocks
     betterlockscreen
     flameshot
+    xclip
   ];
 }
