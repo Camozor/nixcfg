@@ -26,5 +26,6 @@
     betterlockscreen
     flameshot
     xclip
+    dunst
   ];
 }
