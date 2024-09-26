@@ -28,6 +28,7 @@
         }
 
         ./modules/bootloader.nix
+        ./modules/clamav.nix
         ./modules/fonts.nix
         ./modules/hardware-configuration.nix
         # ./modules/hyprland.nix
