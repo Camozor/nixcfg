@@ -118,7 +118,7 @@ require("lazy").setup({
 	{ "tpope/vim-fugitive" },
 	{ "sindrets/diffview.nvim" },
 	{ "mfussenegger/nvim-dap" },
-	{ "rcarriga/nvim-dap-ui", dependencies = {"mfussenegger/nvim-dap", "nvim-neotest/nvim-nio"} },
+	{ "rcarriga/nvim-dap-ui", dependencies = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio" } },
 	{ "mhinz/vim-startify" },
 	{
 		"ggandor/leap.nvim",
@@ -136,6 +136,7 @@ require("lazy").setup({
 			vim.fn["mkdp#util#install"]()
 		end,
 	},
+	{ "mattn/emmet-vim" },
 	-- 	{
 	-- 		dev = true,
 	-- 		lazy = false,

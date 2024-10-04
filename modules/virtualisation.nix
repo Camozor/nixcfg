@@ -20,6 +20,7 @@
     stern
     kubernetes-helm
     kustomize
+    grafana-loki
 
     virt-manager
     qemu
