@@ -24,5 +24,6 @@
     ripgrep
     tldr
     tmux
+    kanata
   ];
 }

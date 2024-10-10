@@ -54,6 +54,9 @@ local servers = {
 	rust_analyzer = {},
 	ocamllsp = {},
 	pyright = {},
+	-- emmet_ls = {
+	-- 	filetypes = { "css", "scss", "saas", "html", "vue" },
+	-- },
 }
 
 local function organize_imports()

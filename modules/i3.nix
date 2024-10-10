@@ -21,6 +21,7 @@
   console.keyMap = "fr";
 
   environment.systemPackages = with pkgs; [
+    xorg.xset
     i3lock
     i3blocks
     betterlockscreen
