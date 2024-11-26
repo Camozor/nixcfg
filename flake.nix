@@ -35,6 +35,7 @@
         ./modules/i18n.nix
         ./modules/nix.nix
         ./modules/ide.nix
+        ./modules/keyboard.nix
         ./modules/programming-languages.nix
         ./modules/sound.nix
         ./modules/terminal-utils.nix
