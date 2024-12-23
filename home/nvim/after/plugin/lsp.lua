@@ -1,4 +1,70 @@
 local lsp = require("lsp-zero").preset({})
+local lspconfig = require("lspconfig")
+local nix = require("camille.nix")
+
+lspconfig.lua_ls.setup({
+	settings = {
+		Lua = {
+			runtime = {
+				version = "LuaJIT",
+			},
+			diagnostics = {
+				globals = {
+					"vim",
+					"require",
+				},
+			},
+			workspace = {
+				library = vim.api.nvim_get_runtime_file("", true),
+			},
+			telemetry = {
+				enable = false,
+			},
+		},
+	},
+})
+
+local volar_derivation_path = nix.find_derivation_path("vue-language-server")
+local typescript_plugin_path = volar_derivation_path
+	.. "lib/node_modules/@vue/language-server/node_modules/@vue/typescript-plugin"
+
+lspconfig.ts_ls.setup({
+	init_options = {
+		plugins = {
+			{
+				name = "@vue/typescript-plugin",
+				location = typescript_plugin_path,
+				languages = { "javascript", "typescript", "vue" },
+			},
+		},
+	},
+	filetypes = {
+		"javascript",
+		"typescript",
+		"vue",
+	},
+})
+
+local typescript_derivation_path = nix.find_derivation_path("tsc")
+local typescript_sdk_path = typescript_derivation_path .. "lib/node_modules/typescript/lib"
+
+lspconfig.volar.setup({
+	filetypes = { "vue" },
+	init_options = {
+		typescript = {
+			tsdk = typescript_sdk_path,
+		},
+		vue = {
+			hybridMode = true,
+		},
+	},
+})
+
+lspconfig.pyright.setup({})
+
+lspconfig.rust_analyzer.setup({})
+
+lspconfig.nil_ls.setup({})
 
 lsp.on_attach(function(_, bufnr)
 	local opts = { buffer = bufnr, remap = false }
@@ -37,99 +103,11 @@ lsp.on_attach(function(_, bufnr)
 	vim.keymap.set("i", "<C-h>", function()
 		vim.lsp.buf.signature_help()
 	end, opts)
+
+	lsp.default_keymaps({ buffer = bufnr })
 end)
 
-local servers = {
-	ts_ls = {},
-	volar = {},
-	lua_ls = {
-		Lua = {
-			workspace = { checkThirdParty = false },
-			telemetry = { enable = false },
-		},
-	},
-	nil_ls = {},
-	clangd = {},
-	elixirls = {},
-	rust_analyzer = {},
-	ocamllsp = {},
-	pyright = {},
-	-- emmet_ls = {
-	-- 	filetypes = { "css", "scss", "saas", "html", "vue" },
-	-- },
-}
-
-local function organize_imports()
-	local params = {
-		command = "_typescript.organizeImports",
-		arguments = { vim.api.nvim_buf_get_name(0) },
-	}
-	vim.lsp.buf.execute_command(params)
-end
-
-local function rename_file()
-	local source_file, target_file
-
-	source_file = vim.api.nvim_buf_get_name(0)
-
-	vim.ui.input({
-		prompt = "Target : ",
-		completion = "file",
-		default = source_file,
-	}, function(input)
-		target_file = input
-	end)
-
-	local params = {
-		command = "_typescript.applyRenameFile",
-		arguments = {
-			{
-				sourceUri = source_file,
-				targetUri = target_file,
-			},
-		},
-		title = "",
-	}
-
-	vim.lsp.util.rename(source_file, target_file, {})
-	vim.lsp.buf.execute_command(params)
-end
-
-local commands = {
-	tsserver = {
-		OrganizeImports = {
-			organize_imports,
-			description = "Organize imports",
-		},
-		RenameFile = {
-			rename_file,
-			description = "Rename file",
-		},
-	},
-}
-
-local mason_lspconfig = require("mason-lspconfig")
-mason_lspconfig.setup({
-	ensure_installed = vim.tbl_keys(servers),
-})
-
-local navbuddy = require("nvim-navbuddy")
-local lspconfig = require("lspconfig")
-
-mason_lspconfig.setup_handlers({
-	function(server_name)
-		lspconfig[server_name].setup({
-			settings = servers[server_name],
-			filetypes = (servers[server_name] or {}).filetypes,
-			commands = (commands[server_name] or {}),
-			on_attach = function(client, bufnr)
-				navbuddy.attach(client, bufnr)
-			end,
-		})
-	end,
-})
-
-require("lsp-zero").extend_cmp()
+lsp.setup()
 
 local cmp = require("cmp")
 

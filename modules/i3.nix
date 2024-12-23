@@ -13,8 +13,9 @@
 
   # Configure keymap in X11
   services.xserver.xkb = {
-    layout = "fr";
+    layout = "fr,us";
     variant = "";
+    options = "terminate:ctrl_alt_bksp";
   };
 
   # Configure console keymap

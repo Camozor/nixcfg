@@ -1,7 +1,7 @@
 local ft = require("guard.filetype")
 
 ft("go"):fmt("gofmt")
-ft("typescript,vue"):fmt("prettier")
+ft("typescript,vue,javascript"):fmt("prettier")
 ft("nix"):fmt("nixfmt")
 ft("rust"):fmt("rustfmt")
 ft("lua"):fmt("stylua")
