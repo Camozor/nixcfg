@@ -59,40 +59,6 @@ require("lazy").setup({
 			}, -- Required
 		},
 	},
-
-	-- LSP
-	-- {
-	-- 	"VonHeikemen/lsp-zero.nvim",
-	-- 	branch = "v2.x",
-	-- 	dependencies = {
-	-- 		{
-	-- 			"neovim/nvim-lspconfig",
-	-- 			dependencies = {
-	-- 				{
-	-- 					"SmiteshP/nvim-navbuddy",
-	-- 					dependencies = {
-	-- 						"SmiteshP/nvim-navic",
-	-- 						"MunifTanjim/nui.nvim",
-	-- 					},
-	-- 					opts = { lsp = { auto_attach = true } },
-	-- 				},
-	-- 			},
-	-- 		},
-	-- 		{ "williamboman/mason.nvim" }, -- Optional
-	-- 		{ "williamboman/mason-lspconfig.nvim" }, -- Optional
-	-- 		{ "WhoIsSethDaniel/mason-tool-installer.nvim" },
-	--
-	-- 		-- Autocompletion
-	-- 		{ "hrsh7th/nvim-cmp" }, -- Required
-	-- 		{ "hrsh7th/cmp-nvim-lsp" }, -- Required
-	-- 		{
-	-- 			"L3MON4D3/LuaSnip",
-	-- 			dependencies = {
-	-- 				"rafamadriz/friendly-snippets",
-	-- 			},
-	-- 		}, -- Required
-	-- 	},
-	-- },
 	{
 		"nvimdev/guard.nvim",
 		dependencies = {

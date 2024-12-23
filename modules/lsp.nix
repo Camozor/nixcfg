@@ -13,5 +13,6 @@
     rust-analyzer
     pyright
     nil
+    terraform-ls
   ];
 }

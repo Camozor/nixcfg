@@ -66,6 +66,8 @@ lspconfig.rust_analyzer.setup({})
 
 lspconfig.nil_ls.setup({})
 
+lspconfig.terraformls.setup({})
+
 lsp.on_attach(function(_, bufnr)
 	local opts = { buffer = bufnr, remap = false }
 
