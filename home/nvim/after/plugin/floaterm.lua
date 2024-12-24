@@ -4,17 +4,23 @@ local s = {
 }
 
 --- @alias state {buffer: integer, window: integer}
---- @alias create_float_windows_opts {buffer?: number, width?: number, height?: number}
+--- @alias create_float_windows_opts {buffer: number, width?: number, height?: number}
 --- @param opts create_float_windows_opts
 --- @return state
 local function create_float_window(opts)
+	opts = opts or {}
 	local width = opts.width or math.floor(0.8 * vim.o.columns)
 	local height = opts.height or math.floor(0.8 * vim.o.lines)
 
 	local col = math.floor((vim.o.columns - width) / 2)
 	local row = math.floor((vim.o.lines - height) / 2)
 
-	local buffer = opts.buffer or vim.api.nvim_create_buf(false, true)
+	local buffer = nil
+	if opts.buffer and vim.api.nvim_buf_is_valid(opts.buffer) then
+		buffer = opts.buffer
+	else
+		buffer = vim.api.nvim_create_buf(false, true)
+	end
 
 	local window_option = {
 		relative = "editor",
@@ -33,7 +39,7 @@ end
 
 local toggle_terminal = function()
 	if not vim.api.nvim_win_is_valid(s.window) then
-		s = create_float_window({})
+		s = create_float_window({ buffer = s.buffer })
 		if vim.bo[s.buffer].buftype ~= "terminal" then
 			vim.cmd.terminal()
 		end
