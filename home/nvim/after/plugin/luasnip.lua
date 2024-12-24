@@ -36,7 +36,7 @@ vim.keymap.set({ "i", "s" }, "<c-l>", function()
 	end
 end, { silent = true })
 
-vim.keymap.set("n", "<leader><leader>s", "<cmd>source ~/.config/nvim/after/plugin/luasnip.lua<CR>")
+vim.keymap.set("n", "<leader><leader>s", "<cmd>source %<CR>")
 
 ls.add_snippets("lua", {
 	s("lf", fmt("local {} = function({})\nend", { i(1), i(2, "") })),
