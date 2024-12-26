@@ -1,11 +1,6 @@
 { pkgs, ... }:
 
 {
-  sound = {
-    enable = true; # Enable sound with pipewire.
-    mediaKeys.enable = true;
-  };
-
   hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
