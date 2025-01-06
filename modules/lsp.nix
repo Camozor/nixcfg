@@ -14,5 +14,6 @@
     pyright
     nil
     terraform-ls
+    yaml-language-server
   ];
 }

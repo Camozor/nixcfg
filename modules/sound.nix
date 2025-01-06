@@ -13,6 +13,7 @@
 
   environment.systemPackages = with pkgs; [
     pamixer
+    alsa-utils
     pavucontrol
     pulseaudio
     vlc

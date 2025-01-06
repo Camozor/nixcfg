@@ -68,6 +68,14 @@ lspconfig.nil_ls.setup({})
 
 lspconfig.terraformls.setup({})
 
+lspconfig.yamlls.setup({
+	settings = {
+		yaml = {
+			schemas = { kubernetes = "globPattern" },
+		},
+	},
+})
+
 lsp.on_attach(function(_, bufnr)
 	local opts = { buffer = bufnr, remap = false }
 

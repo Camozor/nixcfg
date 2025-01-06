@@ -15,7 +15,7 @@
   services.xserver.xkb = {
     layout = "fr,us";
     variant = "";
-    options = "terminate:ctrl_alt_bksp";
+    options = "grp:win_space_toggle";
   };
 
   # Configure console keymap

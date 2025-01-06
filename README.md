@@ -9,7 +9,7 @@ Replace your generated hardware-configuration.nix inside the ```modules``` direc
 
 ### On each change
 ```
-./link.sh
+./switch.sh
 ```
 
 ## 📖 Help
