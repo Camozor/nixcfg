@@ -9,6 +9,8 @@
     pkgs-unstable.typescript-language-server
     pkgs-unstable.vue-language-server
 
+    svelte-language-server
+
     gopls
     rust-analyzer
     pyright
