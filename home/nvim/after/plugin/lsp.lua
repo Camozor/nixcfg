@@ -78,6 +78,8 @@ lspconfig.yamlls.setup({
 
 lspconfig.svelte.setup({})
 
+lspconfig.gopls.setup({})
+
 lsp.on_attach(function(_, bufnr)
 	local opts = { buffer = bufnr, remap = false }
 
