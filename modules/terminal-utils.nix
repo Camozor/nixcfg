@@ -25,5 +25,6 @@
     tldr
     tmux
     kanata
+    curlie
   ];
 }
