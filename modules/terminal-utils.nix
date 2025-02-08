@@ -19,6 +19,8 @@
     git
     unzip
     jq
+    yq
+    libxml2
     fd
     fzf
     ripgrep
