@@ -2,6 +2,8 @@
 
 {
   environment.systemPackages = with pkgs; [
+    shfmt
+
     gcc
     gdb
     gnumake

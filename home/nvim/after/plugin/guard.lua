@@ -5,6 +5,7 @@ ft("typescript,vue,javascript"):fmt("prettier")
 ft("nix"):fmt("nixfmt")
 ft("rust"):fmt("rustfmt")
 ft("lua"):fmt("stylua")
+ft("sh"):fmt("shfmt")
 
 require("guard").setup({
 	fmt_on_save = true,
