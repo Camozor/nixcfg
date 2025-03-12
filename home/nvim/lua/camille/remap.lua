@@ -39,3 +39,5 @@ vim.keymap.set("n", "<C-l>", "<cmd>wincmd l<CR>")
 
 vim.keymap.set("n", "Q", "@qj")
 vim.keymap.set("x", "Q", ":norm @q<CR>")
+
+vim.keymap.set("n", "<C-x>", "<cmd>let @+ = expand('%')<CR>")
