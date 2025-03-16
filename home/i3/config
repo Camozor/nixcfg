@@ -262,3 +262,5 @@ bindsym Control+F12 exec xrandr --output $(xrandr | grep " connected " | awk '{ 
 
 bindsym Control+Print exec flameshot gui
 
+bindsym $mod+Shift+v exec /home/camille/code/tooling/vim-anywhere/bin/run
+
