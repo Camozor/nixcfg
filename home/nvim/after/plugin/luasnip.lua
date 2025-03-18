@@ -41,3 +41,7 @@ vim.keymap.set("n", "<leader><leader>s", "<cmd>source %<CR>")
 ls.add_snippets("lua", {
 	s("lf", fmt("local {} = function({})\nend", { i(1), i(2, "") })),
 })
+
+ls.add_snippets("vue", {
+	s("divc", fmt('<div class="{}">{}</div>', { i(1), i(2) })),
+})
