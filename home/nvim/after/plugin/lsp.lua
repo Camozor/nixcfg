@@ -127,6 +127,7 @@ local cmp = require("cmp")
 
 cmp.setup({
 	sources = {
+		{ name = "luasnip" },
 		{ name = "path" },
 		{ name = "nvim_lsp" },
 		{ name = "nvim_lua" },
