@@ -40,6 +40,7 @@
         ./modules/programming-languages.nix
         ./modules/sound.nix
         ./modules/terminal-utils.nix
+        ./modules/security.nix
         ./modules/services.nix
         ./modules/user.nix
         ./modules/virtualisation.nix
