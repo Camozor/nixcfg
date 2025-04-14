@@ -17,5 +17,6 @@
     nil
     terraform-ls
     yaml-language-server
+    bash-language-server
   ];
 }

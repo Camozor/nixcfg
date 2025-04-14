@@ -78,7 +78,25 @@ lspconfig.yamlls.setup({
 
 lspconfig.svelte.setup({})
 
-lspconfig.gopls.setup({})
+lspconfig.gopls.setup({
+	filetypes = {
+		"go",
+		"gomod",
+		"gowork",
+		"gotmpl",
+	},
+	settings = {
+		gopls = {
+			completeUnimported = true,
+			usePlaceholders = true,
+			analyses = {
+				unusedparams = true, -- TODO not working
+			},
+		},
+	},
+})
+
+lspconfig.bashls.setup({})
 
 lsp.on_attach(function(_, bufnr)
 	local opts = { buffer = bufnr, remap = false }

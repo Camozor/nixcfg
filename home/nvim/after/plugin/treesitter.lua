@@ -1,6 +1,6 @@
 require("nvim-treesitter.configs").setup({
 	-- A list of parser names, or "all" (the five listed parsers should always be installed)
-	ensure_installed = { "lua", "javascript", "typescript", "org" },
+	ensure_installed = { "lua", "javascript", "typescript", "org", "go" },
 	ignore_install = {},
 	modules = {},
 
@@ -13,7 +13,8 @@ require("nvim-treesitter.configs").setup({
 
 	highlight = {
 		enable = false,
-		additional_vim_regex_highlighting = { "org" },
+		additional_vim_regex_highlighting = false,
+		disable = {},
 	},
 
 	incremental_selection = {
