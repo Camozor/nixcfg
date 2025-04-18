@@ -15,6 +15,7 @@
     docker-compose
 
     kubectl
+    kubecolor
     k9s
     kubelogin
     stern

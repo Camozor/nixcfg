@@ -49,6 +49,7 @@ in {
         v = "nvim";
         s = "nvim $(fzf --preview='bat --color=always {}')";
         gpskip = "git push -o ci.skip";
+        kubectl = "kubecolor";
       };
       shellGlobalAliases = {
         G = "| grep";
