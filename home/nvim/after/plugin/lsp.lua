@@ -98,6 +98,10 @@ lspconfig.gopls.setup({
 
 lspconfig.bashls.setup({})
 
+lspconfig.hls.setup({
+	filetypes = { "haskell", "lhaskell", "cabal" },
+})
+
 lsp.on_attach(function(_, bufnr)
 	local opts = { buffer = bufnr, remap = false }
 

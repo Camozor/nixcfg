@@ -6,6 +6,7 @@ ft("nix"):fmt("nixfmt")
 ft("rust"):fmt("rustfmt")
 ft("lua"):fmt("stylua")
 ft("sh"):fmt("shfmt")
+ft("haskell"):fmt("ormolu")
 
 require("guard").setup({
 	fmt_on_save = true,

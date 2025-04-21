@@ -25,5 +25,8 @@
 
     nodejs_20
     yarn
+
+    ghc
+    ormolu
   ];
 }

@@ -18,5 +18,7 @@
     terraform-ls
     yaml-language-server
     bash-language-server
+
+    haskell-language-server
   ];
 }
