@@ -1,4 +1,3 @@
-#/usr/bin/env bash
+#!/usr/bin/env bash
 
-pactl set-default-sink $(pactl list short sinks | grep -E "SUSPENDED|IDLE" | awk '{print $1}')
-
+pactl set-default-sink $(pactl list short sinks | grep -e "suspended|idle" | awk '{print $1}')
