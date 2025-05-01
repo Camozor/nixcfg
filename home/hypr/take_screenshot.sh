@@ -1,4 +1,5 @@
-#/usr/bin/env bash
+#!/usr/bin/env bash
+
 FILENAME=$(date +'%Y-%m-%d-%H%M%S').png
 grim -g "$(slurp)" $HOME/Screenshots/$FILENAME
 

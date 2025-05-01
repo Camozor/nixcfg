@@ -41,5 +41,6 @@
     libnotify
     grim
     slurp
+    (flameshot.override { enableWlrSupport = true; })
   ];
 }

@@ -72,7 +72,7 @@ in {
   };
 
   home.file.".config/dunst".source = ../home/dunst;
-  home.file.".config/hypr".source = ../home/hypr;
+  # home.file.".config/hypr".source = ../home/hypr;
   home.file.".config/k9s".source = ../home/k9s;
   home.file.".config/kitty".source = ../home/kitty;
   home.file.".config/nvim".source = ../home/nvim;
