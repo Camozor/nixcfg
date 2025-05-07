@@ -55,7 +55,7 @@ in {
       shellGlobalAliases = {
         G = "| grep";
         L = "| less";
-        C = "| xargs echo -n | xclip -selection clipboard";
+        C = "| xargs echo -n | wl-copy";
       };
 
       plugins = [{
