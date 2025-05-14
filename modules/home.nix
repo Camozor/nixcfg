@@ -78,6 +78,7 @@ in {
   home.file.".config/nvim".source = ../home/nvim;
   home.file.".config/tmux".source = ../home/tmux;
   home.file.".config/waybar".source = ../home/waybar;
+  home.file.".config/wofi".source = ../home/wofi;
   home.file.".config/yazi".source = ../home/yazi;
 
   home.file.".config/i3".source = ../home/i3;
