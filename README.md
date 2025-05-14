@@ -30,7 +30,7 @@ nixos-help
 | WM (Compositor)       | Hyprland                    |
 | Bar                   | Waybar                      |
 | Notification          | Dunst                       |
-| Launcher              | Rofi-Wayland                |
+| Launcher              | Wofi                        |
 | Editor                | Neovim                      |
 | Terminal              | Kitty                       |
 | Theme                 | Catppuccin Macchiato        |
