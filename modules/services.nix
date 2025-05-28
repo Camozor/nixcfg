@@ -16,4 +16,6 @@
 
   programs.thunar.enable = true;
   programs.nix-ld.enable = true;
+
+  services.tailscale.enable = true;
 }
