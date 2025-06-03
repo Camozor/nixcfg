@@ -36,7 +36,7 @@ in {
     zsh = {
       enable = true;
       enableCompletion = true;
-      initExtra =
+      initContent =
         "source ~/.config/zsh/init.sh;source <(kubectl completion zsh);compdef kubecolor=kubectl";
       oh-my-zsh = {
         enable = true;
