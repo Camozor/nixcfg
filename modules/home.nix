@@ -80,7 +80,4 @@ in {
   home.file.".config/waybar".source = ../home/waybar;
   home.file.".config/wofi".source = ../home/wofi;
   home.file.".config/yazi".source = ../home/yazi;
-
-  home.file.".config/i3".source = ../home/i3;
-  home.file.".config/i3blocks".source = ../home/i3blocks;
 }

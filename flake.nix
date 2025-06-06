@@ -31,7 +31,6 @@
         ./modules/fonts.nix
         ./modules/hardware-configuration.nix
         ./modules/hyprland.nix
-        # ./modules/i3.nix
         ./modules/i18n.nix
         ./modules/nix.nix
         ./modules/ide.nix
