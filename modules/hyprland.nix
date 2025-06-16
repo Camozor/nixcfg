@@ -42,5 +42,8 @@
     grim
     slurp
     (flameshot.override { enableWlrSupport = true; })
+    palenight-theme
+    networkmanagerapplet
+    glib
   ];
 }
