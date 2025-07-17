@@ -124,6 +124,7 @@ require("lazy").setup({
 	},
 	{ "folke/neodev.nvim", opts = {} },
 	{ "tpope/vim-fugitive" },
+	{ "tpope/vim-surround" },
 	{ "sindrets/diffview.nvim" },
 	{ "mfussenegger/nvim-dap" },
 	{ "rcarriga/nvim-dap-ui", dependencies = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio" } },
