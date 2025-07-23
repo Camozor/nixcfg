@@ -37,7 +37,7 @@ in {
       enable = true;
       enableCompletion = true;
       initContent =
-        "source ~/.config/zsh/init.sh;source <(kubectl completion zsh);compdef kubecolor=kubectl";
+        "source ~/.config/zsh/init.sh;source <(kubectl completion zsh);compdef kubecolor=kubectl;source <(COMPLETE=zsh tms)";
       oh-my-zsh = {
         enable = true;
         theme = "arrow";
