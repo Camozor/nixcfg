@@ -145,6 +145,23 @@ end)
 
 lsp.setup()
 
+local orig_util = vim.lsp.util.open_floating_preview
+vim.lsp.util.open_floating_preview = function(contents, syntax, opts, ...)
+	opts = opts or {}
+	opts.border = opts.border
+		or {
+			{ "╭", "FloatBorder" },
+			{ "─", "FloatBorder" },
+			{ "╮", "FloatBorder" },
+			{ "│", "FloatBorder" },
+			{ "╯", "FloatBorder" },
+			{ "─", "FloatBorder" },
+			{ "╰", "FloatBorder" },
+			{ "│", "FloatBorder" },
+		}
+	return orig_util(contents, syntax, opts, ...)
+end
+
 local cmp = require("cmp")
 
 cmp.setup({

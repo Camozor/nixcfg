@@ -9,9 +9,8 @@ require("catppuccin").setup({
 	},
 	custom_highlights = function(colors)
 		return {
-			-- Identifier = { fg = colors.flamingo },
-			-- Function = { fg = colors.mauve },
-			-- Comment = { fg = colors.mauve },
+			NormalFloat = { bg = "#1e1e2e" }, -- change this to your preferred hover background
+			FloatBorder = { fg = colors.mauve, bg = "#1e1e2e" },
 		}
 	end,
 	integrations = {
