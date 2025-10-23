@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, pkgs-code, ... }:
 
 {
   networking.extraHosts = ''
@@ -8,5 +8,6 @@
   '';
   boot.kernel.sysctl."net.ipv4.ip_unprivileged_port_start" = "0";
 
-  environment.systemPackages = with pkgs; [ teams-for-linux azure-cli ];
+  environment.systemPackages =
+    [ pkgs.teams-for-linux pkgs.azure-cli pkgs-code.opencode ];
 }
