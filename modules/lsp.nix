@@ -6,8 +6,8 @@
 
     # typescript & vue
     typescript
-    pkgs-unstable.typescript-language-server
-    pkgs-unstable.vue-language-server
+    typescript-language-server
+    vue-language-server
 
     svelte-language-server
 
