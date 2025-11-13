@@ -124,7 +124,7 @@
 	"disk": {
 		"interval": 5,
 		"format": "Disk {percentage_used:2}%",
-		"path": "/"
+		"path": "/home"
 	},
 	"tray": {
 		"icon-size": 20
