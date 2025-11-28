@@ -14,6 +14,7 @@
     extraPortals = [ pkgs.xdg-desktop-portal-gnome ];
   };
 
+  services.xserver.videoDrivers = [ "nvidia" ];
   hardware.nvidia = {
     modesetting.enable = true;
     open = true;
@@ -28,4 +29,6 @@
   programs.steam.extraCompatPackages = with pkgs; [ proton-ge-bin ];
 
   environment.systemPackages = with pkgs; [ steam-run ];
+
+  hardware.opengl.enable = true;
 }
