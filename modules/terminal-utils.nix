@@ -25,9 +25,10 @@
     fzf
     ripgrep
     tldr
-    tmux
     tmux-sessionizer
     kanata
     curlie
+    bc
+    playerctl
   ];
 }
