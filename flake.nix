@@ -12,16 +12,10 @@
     };
   };
 
-  outputs = { nixpkgs, nixpkgs-unstable, nixpkgs-code, home-manager, ... }: {
-    nixosConfigurations.boulot = nixpkgs.lib.nixosSystem rec {
+  outputs = { nixpkgs, nixpkgs-unstable, nixpkgs-code, home-manager, ... }:
+    let
       system = "x86_64-linux";
-
-      specialArgs = {
-        pkgs-unstable = import nixpkgs-unstable { inherit system; };
-        pkgs-code = import nixpkgs-code { inherit system; };
-      };
-
-      modules = [
+      common-modules = [
         home-manager.nixosModules.home-manager
         {
           home-manager.useGlobalPkgs = true;
@@ -32,8 +26,6 @@
 
         ./modules/bootloader.nix
         ./modules/fonts.nix
-        ./modules/hardware-configuration.nix
-        ./modules/wayland.nix
         ./modules/i18n.nix
         ./modules/nix.nix
         ./modules/ide.nix
@@ -46,8 +38,21 @@
         ./modules/services.nix
         ./modules/user.nix
         ./modules/virtualisation.nix
-        ./modules/work.nix
       ];
+    in {
+      nixosConfigurations = {
+        "maison" = nixpkgs.lib.nixosSystem {
+          specialArgs = {
+            pkgs-unstable = import nixpkgs-unstable { inherit system; };
+            pkgs-code = import nixpkgs-code { inherit system; };
+          };
+
+          modules = common-modules ++ [
+            ./modules/hardware-maison.nix
+            ./modules/wayland.nix
+            { networking.hostName = "maison"; }
+          ];
+        };
+      };
     };
-  };
 }
