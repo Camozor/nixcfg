@@ -33,7 +33,6 @@ in {
       ];
 
       extraConfig = ''
-        # Declare plugins for TPM
         set -g @plugin 'jacoborus/tokyo-night-tmux'
         set -g @plugin 'christoomey/vim-tmux-navigator'
         set -g @plugin 'tmux-plugins/tmux-yank'
@@ -144,7 +143,6 @@ in {
   home.file.".config/k9s".source = ../home/k9s;
   home.file.".config/kitty".source = ../home/kitty;
   home.file.".config/nvim".source = ../home/nvim;
-  # home.file.".config/tmux".source = ../home/tmux;
   home.file.".config/waybar".source = ../home/waybar;
   home.file.".config/wofi".source = ../home/wofi;
   home.file.".config/yazi".source = ../home/yazi;
