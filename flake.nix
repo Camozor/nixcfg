@@ -48,10 +48,23 @@
           };
 
           modules = common-modules ++ [
-            ./modules/hardware-maison.nix
+            ./modules/computers/hardware-maison.nix
             ./modules/gaming.nix
             ./modules/wayland.nix
             { networking.hostName = "maison"; }
+          ];
+        };
+
+        "boulot" = nixpkgs.lib.nixosSystem {
+          specialArgs = {
+            pkgs-unstable = import nixpkgs-unstable { inherit system; };
+            pkgs-code = import nixpkgs-code { inherit system; };
+          };
+
+          modules = common-modules ++ [
+            ./modules/computers/hardware-boulot.nix
+            ./modules/hyprland.nix
+            { networking.hostName = "boulot"; }
           ];
         };
       };
