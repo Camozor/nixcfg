@@ -6,6 +6,7 @@
     xkb.layout = "fr";
     displayManager.gdm.enable = true;
     desktopManager.gnome.enable = true;
+    videoDrivers = [ "nvidia" ];
   };
 
   xdg.portal = {
@@ -13,32 +14,6 @@
     config.common.default = [ "gnome" ];
     extraPortals = [ pkgs.xdg-desktop-portal-gnome ];
   };
-
-  services.xserver.videoDrivers = [ "nvidia" ];
-
-  programs.steam = {
-    enable = true;
-    extraPackages = with pkgs; [ mangohud gamemode ];
-    extraCompatPackages = with pkgs; [ proton-ge-bin ];
-  };
-
-  environment.systemPackages = with pkgs; [
-    steam-run
-    heroic-unwrapped
-
-    freetype
-    fontconfig
-    xorg.libXrender
-    xorg.libXext
-
-    wineWowPackages.waylandFull
-    winetricks
-
-    vulkan-tools
-    pkgsi686Linux.vulkan-tools
-
-    gamemode
-  ];
 
   hardware.graphics = {
     enable = true;

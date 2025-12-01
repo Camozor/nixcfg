@@ -49,6 +49,7 @@
 
           modules = common-modules ++ [
             ./modules/hardware-maison.nix
+            ./modules/gaming.nix
             ./modules/wayland.nix
             { networking.hostName = "maison"; }
           ];
