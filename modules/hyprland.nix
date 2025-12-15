@@ -34,7 +34,6 @@
     wayland-utils
     wl-clipboard
     wlroots
-    rofi-wayland
     wofi
     waybar
     dunst
@@ -44,6 +43,11 @@
     (flameshot.override { enableWlrSupport = true; })
     palenight-theme
     networkmanagerapplet
+    networkmanager-openvpn
     glib
   ];
+
+  networking.networkmanager = {
+    plugins = with pkgs; [ networkmanager-openvpn ];
+  };
 }

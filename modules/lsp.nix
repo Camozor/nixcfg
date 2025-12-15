@@ -1,4 +1,4 @@
-{ pkgs, pkgs-unstable, ... }:
+{ pkgs, pkgs-25-05, ... }:
 
 {
   environment.systemPackages = with pkgs; [
@@ -7,7 +7,7 @@
     # typescript & vue
     typescript
     typescript-language-server
-    vue-language-server
+    pkgs-25-05.vue-language-server
 
     svelte-language-server
 
