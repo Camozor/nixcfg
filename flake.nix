@@ -50,7 +50,7 @@
           modules = common-modules ++ [
             ./modules/maison/hardware-configuration.nix
             ./modules/gaming.nix
-            ./modules/wayland.nix
+            ./modules/gnome-wayland.nix
             { networking.hostName = "maison"; }
           ];
         };

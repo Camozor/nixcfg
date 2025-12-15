@@ -32,5 +32,9 @@
     package = pkgs.linuxPackages.nvidiaPackages.stable;
   };
 
-  environment.systemPackages = with pkgs; [ wl-clipboard ];
+  environment.systemPackages = with pkgs; [
+    wl-clipboard
+    (flameshot.override { enableWlrSupport = true; })
+    qbittorrent-enhanced
+  ];
 }
