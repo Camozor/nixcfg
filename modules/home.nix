@@ -103,8 +103,13 @@ in {
     zsh = {
       enable = true;
       enableCompletion = true;
-      initContent =
-        "source ~/.config/zsh/init.sh;source <(kubectl completion zsh);compdef kubecolor=kubectl;source <(COMPLETE=zsh tms)";
+      initContent = ''
+        source ~/.config/zsh/init.sh;
+        source <(kubectl completion zsh);
+        compdef kubecolor=kubectl;
+        source <(COMPLETE=zsh tms);
+        TIMEFMT=$'\n================\nCPU\t%P\nuser\t%*U\nsystem\t%*S\ntotal\t%*E'
+      '';
       oh-my-zsh = {
         enable = true;
         theme = "arrow";
