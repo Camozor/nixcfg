@@ -14,7 +14,7 @@
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
   nixpkgs.config.permittedInsecurePackages =
-    [ "beekeeper-studio-5.1.5" "electron-36.9.5" ];
+    [ "beekeeper-studio-5.3.4" "electron-36.9.5" ];
 
   # Enable networking
   networking.networkmanager.enable = true;

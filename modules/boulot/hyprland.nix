@@ -34,7 +34,7 @@
     wayland-utils
     wl-clipboard
     wlroots
-    rofi-wayland
+    rofi
     wofi
     waybar
     dunst
