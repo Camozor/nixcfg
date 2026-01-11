@@ -18,6 +18,6 @@
     pulseaudio
     vlc
     spotify
-    ffmpeg
+    ffmpeg-full
   ];
 }
