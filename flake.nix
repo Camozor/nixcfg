@@ -49,8 +49,8 @@
 
           modules = common-modules ++ [
             ./modules/maison/hardware-configuration.nix
-            ./modules/gaming.nix
-            ./modules/gnome-wayland.nix
+            ./modules/maison/gaming.nix
+            ./modules/maison/gnome-wayland.nix
             { networking.hostName = "maison"; }
           ];
         };
@@ -64,7 +64,8 @@
           modules = common-modules ++ [
             ./modules/boulot/hardware-configuration.nix
             ./modules/boulot/encryption.nix
-            ./modules/hyprland.nix
+            ./modules/boulot/hyprland.nix
+            ./modules/boulot/work.nix
             { networking.hostName = "boulot"; }
           ];
         };
