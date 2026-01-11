@@ -3,6 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
+    nixpkgs-pkgs-25-05.url = "github:NixOS/nixpkgs/nixos-25.05";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-code.url =
       "github:nixos/nixpkgs/5e2a59a5b1a82f89f2c7e598302a9cacebb72a67";
@@ -12,7 +13,8 @@
     };
   };
 
-  outputs = { nixpkgs, nixpkgs-unstable, nixpkgs-code, home-manager, ... }:
+  outputs = { nixpkgs, nixpkgs-pkgs-25-05, nixpkgs-unstable, nixpkgs-code
+    , home-manager, ... }:
     let
       system = "x86_64-linux";
       common-modules = [
@@ -21,8 +23,8 @@
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
 
-            home-manager.users.camille = import ./modules/home.nix;
-          }
+          home-manager.users.camille = import ./modules/home.nix;
+        }
 
         ./modules/bootloader.nix
         ./modules/fonts.nix
@@ -44,6 +46,7 @@
         "maison" = nixpkgs.lib.nixosSystem {
           specialArgs = {
             pkgs-unstable = import nixpkgs-unstable { inherit system; };
+            pkgs-25-05 = import nixpkgs-pkgs-25-05 { inherit system; };
             pkgs-code = import nixpkgs-code { inherit system; };
           };
 
@@ -58,6 +61,7 @@
         "boulot" = nixpkgs.lib.nixosSystem {
           specialArgs = {
             pkgs-unstable = import nixpkgs-unstable { inherit system; };
+            pkgs-25-05 = import nixpkgs-pkgs-25-05 { inherit system; };
             pkgs-code = import nixpkgs-code { inherit system; };
           };
 
