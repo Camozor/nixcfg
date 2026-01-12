@@ -51,7 +51,7 @@ in {
 
         # copy mode using 'Esc'
         unbind [
-        bind Escape copy-mode
+        bind a copy-mode
 
         # 1 based sessions
         set -g base-index 1
