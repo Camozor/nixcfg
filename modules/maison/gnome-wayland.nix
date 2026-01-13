@@ -37,4 +37,6 @@
     (flameshot.override { enableWlrSupport = true; })
     qbittorrent-enhanced
   ];
+
+  networking.firewall.enable = false;
 }
