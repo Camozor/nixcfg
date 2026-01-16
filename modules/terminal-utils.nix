@@ -16,7 +16,6 @@
     lsd
     bat
     hostname-debian
-    git
     unzip
     jq
     yq
@@ -30,5 +29,11 @@
     curlie
     bc
     playerctl
+    git-lfs
   ];
+
+  programs.git = {
+    enable = true;
+    lfs.enable = true;
+  };
 }
