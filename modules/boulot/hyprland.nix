@@ -25,6 +25,7 @@
     hyprland
     hyprlock
     hyprpaper
+    hyprmon
     swww
     xdg-desktop-portal-gtk
     xdg-desktop-portal-hyprland
