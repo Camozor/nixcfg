@@ -7,7 +7,7 @@ in {
 
   home.sessionVariables = { EDITOR = "nvim"; };
 
-  home.stateVersion = "24.05";
+  home.stateVersion = "25.11";
 
   # Let home Manager install and manage itself.
   programs.home-manager.enable = true;
@@ -41,6 +41,10 @@ in {
 
         set-option -sa terminal-features ',xterm-kitty:RGB'
         set-option -ga terminal-overrides ',xterm-kitty:Tc'
+
+		set-option -sg escape-time 10
+		set-option -g focus-events on
+		set-option -g default-terminal "screen-256color"
 
         set -g mouse on
 
