@@ -29,14 +29,9 @@ in {
       plugins = with pkgs.tmuxPlugins; [
         tokyo-night-tmux
         vim-tmux-navigator
-        yank
       ];
 
       extraConfig = ''
-        set -g @plugin 'jacoborus/tokyo-night-tmux'
-        set -g @plugin 'christoomey/vim-tmux-navigator'
-        set -g @plugin 'tmux-plugins/tmux-yank'
-
         set -g @tokyo-night-tmux_show_music 1
 
         set-option -sa terminal-features ',xterm-kitty:RGB'
@@ -64,9 +59,8 @@ in {
         set-option -g renumber-windows on
 
         set-window-option -g mode-keys vi
-        bind-key -T copy-mode-vi v send-keys -X begin-selection
+		bind-key -T copy-mode-vi y send-keys -X copy-pipe-and-cancel "wl-copy"
         bind-key -T copy-mode-vi C-v send-keys -X rectangle-toggle
-        bind-key -T copy-mode-vi y send-keys -X copy-selection-and-cancel 
 
         unbind-key 1
         unbind-key 2
