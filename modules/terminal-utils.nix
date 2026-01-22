@@ -30,6 +30,7 @@
     bc
     playerctl
     git-lfs
+    unixtools.netstat
   ];
 
   programs.git = {
