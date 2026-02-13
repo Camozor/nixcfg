@@ -44,12 +44,6 @@
     slurp
     (flameshot.override { enableWlrSupport = true; })
     palenight-theme
-    networkmanagerapplet
-    networkmanager-openvpn
     glib
   ];
-
-  networking.networkmanager = {
-    plugins = with pkgs; [ networkmanager-openvpn ];
-  };
 }

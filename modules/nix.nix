@@ -15,8 +15,5 @@
   nixpkgs.config.allowUnfree = true;
   nixpkgs.config.permittedInsecurePackages = [ "beekeeper-studio-5.3.4" ];
 
-  # Enable networking
-  networking.networkmanager.enable = true;
-
   documentation.dev.enable = true;
 }

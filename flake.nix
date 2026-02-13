@@ -27,15 +27,16 @@
         ./modules/bootloader.nix
         ./modules/fonts.nix
         ./modules/i18n.nix
-        ./modules/nix.nix
         ./modules/ide.nix
         ./modules/keyboard.nix
         ./modules/lsp.nix
+        ./modules/network.nix
+        ./modules/nix.nix
         ./modules/programming-languages.nix
-        ./modules/sound.nix
-        ./modules/terminal-utils.nix
         ./modules/security.nix
         ./modules/services.nix
+        ./modules/sound.nix
+        ./modules/terminal-utils.nix
         ./modules/user.nix
         ./modules/virtualisation.nix
       ];
@@ -51,6 +52,7 @@
             ./modules/maison/hardware-configuration.nix
             ./modules/maison/gaming.nix
             ./modules/maison/gnome-wayland.nix
+            ./modules/maison/chill.nix
             { networking.hostName = "maison"; }
           ];
         };

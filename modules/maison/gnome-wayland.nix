@@ -4,12 +4,13 @@
   services.xserver = {
     enable = true;
     xkb.layout = "fr";
-    displayManager.gdm.enable = true;
-    desktopManager.gnome.enable = true;
     videoDrivers = [ "nvidia" ];
     autoRepeatDelay = 150;
     autoRepeatInterval = 20;
   };
+
+  services.desktopManager.gnome.enable = true;
+  services.displayManager.gdm.enable = true;
 
   xdg.portal = {
     enable = true;
