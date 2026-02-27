@@ -146,6 +146,60 @@ require("lazy").setup({
 		end,
 	},
 	{ "mattn/emmet-vim" },
+	{
+		"ThePrimeagen/99",
+		config = function()
+			local _99 = require("99")
+
+			local cwd = vim.uv.cwd()
+			local basename = vim.fs.basename(cwd)
+			_99.setup({
+				provider = _99.OpenCodeProvider,
+				logger = {
+					level = _99.DEBUG,
+					path = "/tmp/" .. basename .. ".99.debug",
+					print_on_error = true,
+				},
+
+				completion = {
+					custom_rules = {
+						"scratch/custom_rules/",
+					},
+					files = {},
+					source = "cmp",
+				},
+
+				--- WARNING: if you change cwd then this is likely broken
+				--- ill likely fix this in a later change
+				---
+				--- md_files is a list of files to look for and auto add based on the location
+				--- of the originating request.  That means if you are at /foo/bar/baz.lua
+				--- the system will automagically look for:
+				--- /foo/bar/AGENT.md
+				--- /foo/AGENT.md
+				--- assuming that /foo is project root (based on cwd)
+				md_files = {
+					"AGENT.md",
+				},
+			})
+
+			-- take extra note that i have visual selection only in v mode
+			-- technically whatever your last visual selection is, will be used
+			-- so i have this set to visual mode so i dont screw up and use an
+			-- old visual selection
+			--
+			-- likely ill add a mode check and assert on required visual mode
+			-- so just prepare for it now
+			vim.keymap.set("v", "<leader>9v", function()
+				_99.visual()
+			end)
+
+			--- if you have a request you dont want to make any changes, just cancel it
+			vim.keymap.set("v", "<leader>9s", function()
+				_99.stop_all_requests()
+			end)
+		end,
+	},
 	-- 	{
 	-- 		dev = true,
 	-- 		lazy = false,

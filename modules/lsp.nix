@@ -1,4 +1,4 @@
-{ pkgs, pkgs-25-05, ... }:
+{ pkgs, pkgs-25-05, pkgs-unstable, ... }:
 
 {
   environment.systemPackages = with pkgs; [
@@ -11,7 +11,7 @@
 
     svelte-language-server
 
-    gopls
+    pkgs-unstable.gopls
     rust-analyzer
     pyright
     nil
