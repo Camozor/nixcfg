@@ -145,6 +145,16 @@ end)
 
 lsp.setup()
 
+vim.diagnostic.config({
+	virtual_text = {
+		prefix = "●",
+	},
+	signs = true,
+	underline = true,
+	update_in_insert = false,
+	severity_sort = true,
+})
+
 local orig_util = vim.lsp.util.open_floating_preview
 vim.lsp.util.open_floating_preview = function(contents, syntax, opts, ...)
 	opts = opts or {}
