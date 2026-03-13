@@ -146,6 +146,7 @@ in {
   home.file.".config/k9s".source = ../home/k9s;
   home.file.".config/kitty".source = ../home/kitty;
   home.file.".config/nvim".source = ../home/nvim;
+  home.file.".config/tms".source = ../home/tms;
   home.file.".config/waybar".source = ../home/waybar;
   home.file.".config/wofi".source = ../home/wofi;
   home.file.".config/yazi".source = ../home/yazi;

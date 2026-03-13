@@ -65,7 +65,6 @@
 
           modules = common-modules ++ [
             ./modules/boulot/hardware-configuration.nix
-            ./modules/boulot/encryption.nix
             ./modules/boulot/hyprland.nix
             ./modules/boulot/work.nix
             { networking.hostName = "boulot"; }
