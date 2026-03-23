@@ -10,7 +10,7 @@
 
   environment.systemPackages = with pkgs; [
     teams-for-linux
-    azure-cli
+    pkgs-unstable.azure-cli
     pkgs-unstable.opencode
   ];
 }
