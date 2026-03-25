@@ -31,6 +31,8 @@
     playerctl
     git-lfs
     unixtools.netstat
+    lnav
+    lazygit
   ];
 
   programs.git = {
