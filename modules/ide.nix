@@ -1,5 +1,5 @@
-{ pkgs, pkgs-unstable, ... }:
+{ pkgs, ... }:
 
 {
-  environment.systemPackages = with pkgs; [ pkgs-unstable.neovim vim vscode ];
+  environment.systemPackages = with pkgs; [ neovim vim vscode ];
 }

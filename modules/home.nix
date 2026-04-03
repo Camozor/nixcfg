@@ -121,6 +121,7 @@ in {
         s = "nvim $(fzf --preview='bat --color=always {}')";
         gpskip = "git push -o ci.skip";
         kubectl = "kubecolor";
+		lg = "lazygit";
       };
       shellGlobalAliases = {
         G = "| grep";
