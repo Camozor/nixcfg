@@ -13,7 +13,6 @@ in {
   programs.home-manager.enable = true;
 
   home.packages = with pkgs; [
-    firefox
     brave
     libreoffice
     openvpn
@@ -23,13 +22,15 @@ in {
     discord
   ];
 
+  programs.firefox = {
+    enable = true;
+    policies = { Certificates = { Install = [ ../certs/rootCA.pem ]; }; };
+  };
+
   programs = {
     tmux = {
       enable = true;
-      plugins = with pkgs.tmuxPlugins; [
-        tokyo-night-tmux
-        vim-tmux-navigator
-      ];
+      plugins = with pkgs.tmuxPlugins; [ tokyo-night-tmux vim-tmux-navigator ];
 
       extraConfig = ''
         set -g @tokyo-night-tmux_show_music 1
@@ -37,9 +38,9 @@ in {
         set-option -sa terminal-features ',xterm-kitty:RGB'
         set-option -ga terminal-overrides ',xterm-kitty:Tc'
 
-		set-option -sg escape-time 10
-		set-option -g focus-events on
-		set-option -g default-terminal "screen-256color"
+        set-option -sg escape-time 10
+        set-option -g focus-events on
+        set-option -g default-terminal "screen-256color"
 
         set -g mouse on
 
@@ -59,7 +60,7 @@ in {
         set-option -g renumber-windows on
 
         set-window-option -g mode-keys vi
-		bind-key -T copy-mode-vi y send-keys -X copy-pipe-and-cancel "wl-copy"
+        bind-key -T copy-mode-vi y send-keys -X copy-pipe-and-cancel "wl-copy"
         bind-key -T copy-mode-vi C-v send-keys -X rectangle-toggle
 
         unbind-key 1
@@ -121,7 +122,7 @@ in {
         s = "nvim $(fzf --preview='bat --color=always {}')";
         gpskip = "git push -o ci.skip";
         kubectl = "kubecolor";
-		lg = "lazygit";
+        lg = "lazygit";
       };
       shellGlobalAliases = {
         G = "| grep";

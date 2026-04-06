@@ -13,4 +13,6 @@
     pkgs-unstable.azure-cli
     pkgs-unstable.opencode
   ];
+
+  security.pki.certificateFiles = [ ../../certs/rootCA.pem ];
 }
