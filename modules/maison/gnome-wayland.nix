@@ -33,11 +33,12 @@
     package = pkgs.linuxPackages.nvidiaPackages.stable;
   };
 
+  networking.firewall.enable = false;
+
   environment.systemPackages = with pkgs; [
     wl-clipboard
     (flameshot.override { enableWlrSupport = true; })
     qbittorrent-enhanced
   ];
 
-  networking.firewall.enable = false;
 }

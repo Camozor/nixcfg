@@ -33,6 +33,7 @@
     unixtools.netstat
     lnav
     lazygit
+    just
   ];
 
   programs.git = {
