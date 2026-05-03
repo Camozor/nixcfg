@@ -129,13 +129,6 @@ require("lazy").setup({
 	{ "mfussenegger/nvim-dap" },
 	{ "rcarriga/nvim-dap-ui", dependencies = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio" } },
 	{ "mhinz/vim-startify" },
-	{
-		"ggandor/leap.nvim",
-		dependencies = { "tpope/vim-repeat" },
-		config = function()
-			require("leap").create_default_mappings()
-		end,
-	},
 	{ "nvim-pack/nvim-spectre", dependencies = { "nvim-lua/plenary.nvim" } },
 	{
 		"iamcco/markdown-preview.nvim",
@@ -200,16 +193,22 @@ require("lazy").setup({
 			end)
 		end,
 	},
-	-- 	{
-	-- 		dev = true,
-	-- 		lazy = false,
-	-- 		dir = "spotify",
-	-- 		config = function(opts)
-	-- 			require("spotify").setup({ dir = opts.dir })
-	-- 		end,
-	-- 	},
-	-- }, {
-	-- 	dev = {
-	-- 		path = "$HOME/code/perso/lua/",
-	-- 	},
+	{
+		"spotify",
+		dev = true,
+		lazy = false,
+		config = function(opts)
+			require("spotify").setup({ dir = opts.dir })
+		end,
+	},
+	{
+		"dbus-lua",
+		dev = true,
+		lazy = false,
+	},
+}, {
+	dev = {
+		path = "~/code/",
+		fallback = false,
+	},
 })
