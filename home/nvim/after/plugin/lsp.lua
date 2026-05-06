@@ -43,6 +43,18 @@ lspconfig.ts_ls.setup({
 		"typescript",
 		"vue",
 	},
+	settings = {
+		typescript = {
+			preferences = {
+				importModuleSpecifierPreference = "non-relative",
+			},
+		},
+		javascript = {
+			preferences = {
+				importModuleSpecifierPreference = "non-relative",
+			},
+		},
+	},
 })
 
 local typescript_derivation_path = nix.find_derivation_path("tsc")
