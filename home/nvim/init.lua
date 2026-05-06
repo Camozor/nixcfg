@@ -208,7 +208,7 @@ require("lazy").setup({
 	},
 }, {
 	dev = {
-		path = "~/code/",
+		path = "~/code/perso",
 		fallback = false,
 	},
 })
