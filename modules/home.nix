@@ -123,6 +123,7 @@ in {
         gpskip = "git push -o ci.skip";
         kubectl = "kubecolor";
         lg = "lazygit";
+        o = "xdg-open";
       };
       shellGlobalAliases = {
         G = "| grep";
