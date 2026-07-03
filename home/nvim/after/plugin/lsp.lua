@@ -1,8 +1,50 @@
-local lsp = require("lsp-zero").preset({})
 local lspconfig = require("lspconfig")
 local nix = require("camille.nix")
+local cmp = require("cmp")
+
+local capabilities = require("cmp_nvim_lsp").default_capabilities()
+
+vim.api.nvim_create_autocmd("LspAttach", {
+	desc = "LSP Actions",
+	callback = function(event)
+		local opts = { buffer = event.buf, remap = false }
+
+		vim.keymap.set("n", "gd", function()
+			vim.lsp.buf.definition()
+		end, opts)
+		vim.keymap.set("n", "gD", function()
+			vim.lsp.buf.declaration()
+		end, opts)
+		vim.keymap.set("n", "gr", function()
+			vim.lsp.buf.references()
+		end, opts)
+		vim.keymap.set("n", "gi", function()
+			vim.lsp.buf.implementation()
+		end, opts)
+		vim.keymap.set("n", "K", function()
+			vim.lsp.buf.hover()
+		end, opts)
+		vim.keymap.set("n", "<leader>vd", "<cmd>Telescope diagnostics<CR>", opts)
+		vim.keymap.set("n", "[d", function()
+			vim.diagnostic.goto_next()
+		end, opts)
+		vim.keymap.set("n", "]d", function()
+			vim.diagnostic.goto_prev()
+		end, opts)
+		vim.keymap.set("n", "<leader>vca", function()
+			vim.lsp.buf.code_action()
+		end, opts)
+		vim.keymap.set("n", "<leader>vrn", function()
+			vim.lsp.buf.rename()
+		end, opts)
+		vim.keymap.set("i", "<leader>sh", function()
+			vim.lsp.buf.signature_help()
+		end, opts)
+	end,
+})
 
 lspconfig.lua_ls.setup({
+	capabilities = capabilities,
 	settings = {
 		Lua = {
 			runtime = {
@@ -29,6 +71,7 @@ local typescript_plugin_path = volar_derivation_path
 	.. "lib/node_modules/@vue/language-server/node_modules/@vue/typescript-plugin"
 
 lspconfig.ts_ls.setup({
+	capabilities = capabilities,
 	init_options = {
 		plugins = {
 			{
@@ -61,6 +104,7 @@ local typescript_derivation_path = nix.find_derivation_path("tsc")
 local typescript_sdk_path = typescript_derivation_path .. "lib/node_modules/typescript/lib"
 
 lspconfig.volar.setup({
+	capabilities = capabilities,
 	filetypes = { "vue" },
 	init_options = {
 		typescript = {
@@ -72,15 +116,8 @@ lspconfig.volar.setup({
 	},
 })
 
-lspconfig.pyright.setup({})
-
-lspconfig.rust_analyzer.setup({})
-
-lspconfig.nil_ls.setup({})
-
-lspconfig.terraformls.setup({})
-
 lspconfig.yamlls.setup({
+	capabilities = capabilities,
 	settings = {
 		yaml = {
 			schemas = { kubernetes = "globPattern" },
@@ -88,9 +125,8 @@ lspconfig.yamlls.setup({
 	},
 })
 
-lspconfig.svelte.setup({})
-
 lspconfig.gopls.setup({
+	capabilities = capabilities,
 	filetypes = {
 		"go",
 		"gomod",
@@ -108,54 +144,10 @@ lspconfig.gopls.setup({
 	},
 })
 
-lspconfig.bashls.setup({})
-
-lspconfig.hls.setup({
-	filetypes = { "haskell", "lhaskell", "cabal" },
-})
-
-lsp.on_attach(function(_, bufnr)
-	local opts = { buffer = bufnr, remap = false }
-
-	vim.keymap.set("n", "gd", function()
-		vim.lsp.buf.definition()
-	end, opts)
-	vim.keymap.set("n", "gD", function()
-		vim.lsp.buf.declaration()
-	end, opts)
-	vim.keymap.set("n", "gr", function()
-		vim.lsp.buf.references()
-	end, opts)
-	vim.keymap.set("n", "gi", function()
-		vim.lsp.buf.implementation()
-	end, opts)
-	vim.keymap.set("n", "K", function()
-		vim.lsp.buf.hover()
-	end, opts)
-	vim.keymap.set("n", "<leader>vd", "<cmd>Telescope diagnostics<CR>", opts)
-	vim.keymap.set("n", "[d", function()
-		vim.diagnostic.goto_next()
-	end, opts)
-	vim.keymap.set("n", "]d", function()
-		vim.diagnostic.goto_prev()
-	end, opts)
-	vim.keymap.set("n", "<leader>vca", function()
-		vim.lsp.buf.code_action()
-	end, opts)
-	vim.keymap.set("n", "<leader>vrr", function()
-		vim.lsp.buf.references()
-	end, opts)
-	vim.keymap.set("n", "<leader>vrn", function()
-		vim.lsp.buf.rename()
-	end, opts)
-	vim.keymap.set("i", "<C-h>", function()
-		vim.lsp.buf.signature_help()
-	end, opts)
-
-	lsp.default_keymaps({ buffer = bufnr })
-end)
-
-lsp.setup()
+local basic_servers = { "pyright", "rust_analyzer", "nil_ls", "terraformls", "svelte", "bashls" }
+for _, server in ipairs(basic_servers) do
+	lspconfig[server].setup({ capabilities = capabilities })
+end
 
 vim.diagnostic.config({
 	virtual_text = {
@@ -183,8 +175,6 @@ vim.lsp.util.open_floating_preview = function(contents, syntax, opts, ...)
 		}
 	return orig_util(contents, syntax, opts, ...)
 end
-
-local cmp = require("cmp")
 
 cmp.setup({
 	sources = {
