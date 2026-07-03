@@ -12,3 +12,7 @@ garbage:
 
 fmt:
 		nixfmt .
+
+softlink:
+		ln -s "$(pwd)/home/nvim" ~/.config/nvim
+		ln -s "$(pwd)/home/hypr" ~/.config/hypr
