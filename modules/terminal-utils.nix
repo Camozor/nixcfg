@@ -18,7 +18,7 @@
     hostname-debian
     unzip
     jq
-    yq
+    yq-go
     libxml2
     fd
     fzf

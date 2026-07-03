@@ -1,13 +1,17 @@
 { pkgs, ... }:
 
-let user = "camille";
-in {
+let
+  user = "camille";
+in
+{
   home.username = "${user}";
   home.homeDirectory = "/home/${user}";
 
-  home.sessionVariables = { EDITOR = "nvim"; };
+  home.sessionVariables = {
+    EDITOR = "nvim";
+  };
 
-  home.stateVersion = "25.11";
+  home.stateVersion = "26.05";
 
   # Let home Manager install and manage itself.
   programs.home-manager.enable = true;
@@ -24,13 +28,20 @@ in {
 
   programs.firefox = {
     enable = true;
-    policies = { Certificates = { Install = [ ../certs/rootCA.pem ]; }; };
+    policies = {
+      Certificates = {
+        Install = [ ../certs/rootCA.pem ];
+      };
+    };
   };
 
   programs = {
     tmux = {
       enable = true;
-      plugins = with pkgs.tmuxPlugins; [ tokyo-night-tmux vim-tmux-navigator ];
+      plugins = with pkgs.tmuxPlugins; [
+        tokyo-night-tmux
+        vim-tmux-navigator
+      ];
 
       extraConfig = ''
         set -g @tokyo-night-tmux_show_music 1
@@ -112,7 +123,13 @@ in {
       oh-my-zsh = {
         enable = true;
         theme = "arrow";
-        plugins = [ "git" "fzf" "z" "kubectl" "vi-mode" ];
+        plugins = [
+          "git"
+          "fzf"
+          "z"
+          "kubectl"
+          "vi-mode"
+        ];
       };
       shellAliases = {
         ls = "lsd";
@@ -131,16 +148,18 @@ in {
         C = "| xargs echo -n | wl-copy";
       };
 
-      plugins = [{
-        name = "zsh-nix-shell";
-        file = "nix-shell.plugin.zsh";
-        src = pkgs.fetchFromGitHub {
-          owner = "chisui";
-          repo = "zsh-nix-shell";
-          rev = "v0.7.0";
-          sha256 = "149zh2rm59blr2q458a5irkfh82y3dwdich60s9670kl3cl5h2m1";
-        };
-      }];
+      plugins = [
+        {
+          name = "zsh-nix-shell";
+          file = "nix-shell.plugin.zsh";
+          src = pkgs.fetchFromGitHub {
+            owner = "chisui";
+            repo = "zsh-nix-shell";
+            rev = "v0.7.0";
+            sha256 = "149zh2rm59blr2q458a5irkfh82y3dwdich60s9670kl3cl5h2m1";
+          };
+        }
+      ];
     };
   };
 

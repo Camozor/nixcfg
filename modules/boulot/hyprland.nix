@@ -13,7 +13,9 @@
   };
   services.displayManager.sddm.wayland.enable = true;
   services.displayManager.sddm.settings = {
-    Input = { KeyboardLayout = "fr"; };
+    Input = {
+      KeyboardLayout = "fr";
+    };
   };
   xdg.portal = {
     enable = true;
@@ -26,7 +28,7 @@
     hyprlock
     hyprpaper
     hyprmon
-    swww
+    awww
     xdg-desktop-portal-gtk
     xdg-desktop-portal-hyprland
     xwayland

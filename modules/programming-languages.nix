@@ -17,13 +17,13 @@
 
     python3
 
-    nixfmt-classic
+    nixfmt
 
     terraform
 
     stylua
 
-    nodejs_20
+    nodejs_26
     yarn
 
     ghc
