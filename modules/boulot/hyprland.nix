@@ -7,7 +7,7 @@
   };
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
-  services.libinput.enable = true;
+  # services.libinput.enable = true;
 
   services.xserver = {
     enable = true;
@@ -16,11 +16,19 @@
   services.displayManager.sddm = {
     enable = true; # Crucial base service activation
     wayland.enable = true;
-    settings = { Input = { KeyboardLayout = "fr"; }; };
+    settings = {
+      Input = {
+        KeyboardLayout = "fr";
+      };
+    };
   };
   xdg.portal = {
     enable = true;
     extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+    config.common.default = [
+      "hyprland"
+      "gtk"
+    ];
   };
 
   environment.systemPackages = with pkgs; [
@@ -28,7 +36,6 @@
     hyprpaper
     hyprmon
     awww
-    xdg-desktop-portal-gtk
     wayland-utils
     wl-clipboard
     rofi
