@@ -14,5 +14,5 @@ fmt:
 		nixfmt .
 
 softlink:
-		ln -s "$(pwd)/home/nvim" ~/.config/nvim
-		ln -s "$(pwd)/home/hypr" ~/.config/hypr
+		ln -fs "$(pwd)/home/nvim" ~/.config/nvim
+		ln -fs "$(pwd)/home/hypr" ~/.config/hypr
