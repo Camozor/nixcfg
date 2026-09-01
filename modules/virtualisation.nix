@@ -11,7 +11,6 @@
   programs.virt-manager.enable = true;
 
   environment.systemPackages = with pkgs; [
-    docker_29
     docker-compose
 
     kubectl
