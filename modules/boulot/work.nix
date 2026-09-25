@@ -12,6 +12,7 @@
     teams-for-linux
     pkgs-unstable.azure-cli
     pkgs-unstable.opencode
+    pkgs-unstable.fence
   ];
 
   security.pki.certificateFiles = [ ../../certs/rootCA.pem ];
