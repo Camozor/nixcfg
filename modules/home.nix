@@ -124,6 +124,7 @@ in {
         kubectl = "kubecolor";
         lg = "lazygit";
         o = "xdg-open";
+        oc = "fence -- opencode";
       };
       shellGlobalAliases = {
         G = "| grep";
