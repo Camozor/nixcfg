@@ -26,8 +26,8 @@ hl.env("HYPRCURSOR_SIZE", "48")
 -- Refer to https://wiki.hypr.land/configuring/core/config-options/
 hl.config({
 	general = {
-		gaps_in = 5,
-		gaps_out = 20,
+		gaps_in = 2,
+		gaps_out = 5,
 
 		border_size = 2,
 
@@ -100,24 +100,6 @@ hl.animation({ leaf = "workspaces", enabled = true, speed = 1.94, bezier = "almo
 hl.animation({ leaf = "workspacesIn", enabled = true, speed = 1.21, bezier = "almostLinear", style = "fade" })
 hl.animation({ leaf = "workspacesOut", enabled = true, speed = 1.94, bezier = "almostLinear", style = "fade" })
 hl.animation({ leaf = "zoomFactor", enabled = true, speed = 7, bezier = "quick" })
-
--- Ref https://wiki.hypr.land/configuring/core/rules/workspace-rules/
--- "Smart gaps" / "No gaps when only"
--- uncomment all if you wish to use that.
--- hl.workspace_rule({ workspace = "w[tv1]", gaps_out = 0, gaps_in = 0 })
--- hl.workspace_rule({ workspace = "f[1]",   gaps_out = 0, gaps_in = 0 })
--- hl.window_rule({
---     name  = "no-gaps-wtv1",
---     match = { float = false, workspace = "w[tv1]" },
---     border_size = 0,
---     rounding    = 0,
--- })
--- hl.window_rule({
---     name  = "no-gaps-f1",
---     match = { float = false, workspace = "f[1]" },
---     border_size = 0,
---     rounding    = 0,
--- })
 
 -- See https://wiki.hypr.land/configuring/layouts/dwindle-layout/ for more
 hl.config({
@@ -198,10 +180,6 @@ local mainMod = "ALT" -- Sets "Windows" key as main modifier
 -- Example binds, see https://wiki.hypr.land/configuring/core/binds/ for more
 hl.bind(mainMod .. " + return", hl.dsp.exec_cmd(terminal))
 hl.bind(mainMod .. " + C", hl.dsp.window.close())
-hl.bind(
-	mainMod .. " + M",
-	hl.dsp.exec_cmd("command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch 'hl.dsp.exit()'")
-)
 hl.bind(mainMod .. " + CTRL + L", hl.dsp.exec_cmd("hyprlock"))
 hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(fileManager))
 hl.bind(mainMod .. " + V", hl.dsp.window.float({ action = "toggle" }))
@@ -227,9 +205,17 @@ hl.bind(mainMod .. " + underscore", hl.dsp.focus({ workspace = 8 }))
 hl.bind(mainMod .. " + Ccedilla", hl.dsp.focus({ workspace = 9 }))
 hl.bind(mainMod .. " + Agrave", hl.dsp.focus({ workspace = 10 }))
 
--- Example special workspace (scratchpad)
-hl.bind(mainMod .. " + S", hl.dsp.workspace.toggle_special("magic"))
-hl.bind(mainMod .. " + SHIFT + S", hl.dsp.window.move({ workspace = "special:magic" }))
+-- Move window to workspace (French AZERTY layout)
+hl.bind(mainMod .. " + SHIFT_L + ampersand", hl.dsp.window.move({ workspace = 1 }))
+hl.bind(mainMod .. " + SHIFT_L + eacute", hl.dsp.window.move({ workspace = 2 }))
+hl.bind(mainMod .. " + SHIFT_L + quotedbl", hl.dsp.window.move({ workspace = 3 }))
+hl.bind(mainMod .. " + SHIFT_L + apostrophe", hl.dsp.window.move({ workspace = 4 }))
+hl.bind(mainMod .. " + SHIFT_L + parenleft", hl.dsp.window.move({ workspace = 5 }))
+hl.bind(mainMod .. " + SHIFT_L + minus", hl.dsp.window.move({ workspace = 6 }))
+hl.bind(mainMod .. " + SHIFT_L + Egrave", hl.dsp.window.move({ workspace = 7 }))
+hl.bind(mainMod .. " + SHIFT_L + underscore", hl.dsp.window.move({ workspace = 8 }))
+hl.bind(mainMod .. " + SHIFT_L + Ccedilla", hl.dsp.window.move({ workspace = 9 }))
+hl.bind(mainMod .. " + SHIFT_L + Agrave", hl.dsp.window.move({ workspace = 10 }))
 
 -- Scroll through existing workspaces with mainMod + scroll
 hl.bind(mainMod .. " + mouse_down", hl.dsp.focus({ workspace = "e+1" }))
@@ -238,36 +224,6 @@ hl.bind(mainMod .. " + mouse_up", hl.dsp.focus({ workspace = "e-1" }))
 -- Move/resize windows with mainMod + LMB/RMB and dragging
 hl.bind(mainMod .. " + mouse:272", hl.dsp.window.drag(), { mouse = true })
 hl.bind(mainMod .. " + mouse:273", hl.dsp.window.resize(), { mouse = true })
-
--- Laptop multimedia keys for volume and LCD brightness
-hl.bind(
-	"XF86AudioRaiseVolume",
-	hl.dsp.exec_cmd("wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+"),
-	{ locked = true, repeating = true }
-)
-hl.bind(
-	"XF86AudioLowerVolume",
-	hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"),
-	{ locked = true, repeating = true }
-)
-hl.bind(
-	"XF86AudioMute",
-	hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"),
-	{ locked = true, repeating = true }
-)
-hl.bind(
-	"XF86AudioMicMute",
-	hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"),
-	{ locked = true, repeating = true }
-)
-hl.bind("XF86MonBrightnessUp", hl.dsp.exec_cmd("brightnessctl -e4 -n2 set 5%+"), { locked = true, repeating = true })
-hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd("brightnessctl -e4 -n2 set 5%-"), { locked = true, repeating = true })
-
--- Requires playerctl
-hl.bind("XF86AudioNext", hl.dsp.exec_cmd("playerctl next"), { locked = true })
-hl.bind("XF86AudioPause", hl.dsp.exec_cmd("playerctl play-pause"), { locked = true })
-hl.bind("XF86AudioPlay", hl.dsp.exec_cmd("playerctl play-pause"), { locked = true })
-hl.bind("XF86AudioPrev", hl.dsp.exec_cmd("playerctl previous"), { locked = true })
 
 --------------------------------
 ---- WINDOWS AND WORKSPACES ----
@@ -318,8 +274,34 @@ hl.window_rule({
 	float = true,
 })
 
+---------------------
+---- SCREEN MODE ----
+---------------------
+
+local laptopMonitor = "eDP-1"
+
+-- Toggle the built-in laptop panel. When it is the only active output, (re)enable
+-- it with its native mode; otherwise disable it so the external monitor(s) are
+-- used on their own.
+local function toggleScreenMode()
+	if #hl.get_monitors() == 1 then
+		hl.monitor({
+			output = laptopMonitor,
+			mode = "1920x1200",
+			position = "0x0",
+			scale = 1.0,
+			disabled = false,
+		})
+	else
+		hl.monitor({
+			output = laptopMonitor,
+			disabled = true,
+		})
+	end
+end
+
 -- Custom scripts
-hl.bind(mainMod .. " + F10", hl.dsp.exec_cmd("$HOME/.config/hypr/toggle_screen_mode.sh"))
+hl.bind(mainMod .. " + F10", toggleScreenMode, { description = "Toggle laptop screen" })
 hl.bind(mainMod .. " + F8", hl.dsp.exec_cmd("$HOME/.config/hypr/toggle_speaker.sh"))
 hl.bind(mainMod .. " + F7", hl.dsp.exec_cmd("$HOME/.config/hypr/toggle_micro.sh"))
 hl.bind(mainMod .. " + Print", hl.dsp.exec_cmd("$HOME/.config/hypr/take_screenshot.sh"))
