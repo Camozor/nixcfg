@@ -280,17 +280,14 @@ hl.window_rule({
 
 local laptopMonitor = "eDP-1"
 
--- Toggle the built-in laptop panel. When it is the only active output, (re)enable
--- it with its native mode; otherwise disable it so the external monitor(s) are
--- used on their own.
 local function toggleScreenMode()
 	if #hl.get_monitors() == 1 then
 		hl.monitor({
 			output = laptopMonitor,
-			mode = "1920x1200",
-			position = "0x0",
-			scale = 1.0,
 			disabled = false,
+			mode = "preferred",
+			position = "auto-right",
+			scale = 1.8,
 		})
 	else
 		hl.monitor({
