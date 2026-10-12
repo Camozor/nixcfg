@@ -6,7 +6,7 @@ hl.monitor({
 })
 
 local terminal = "kitty"
-local fileManager = "dolphin"
+local fileManager = "thunar"
 local menu = "wofi --show drun"
 
 hl.on("hyprland.start", function()
@@ -122,20 +122,12 @@ hl.config({
 	},
 })
 
-----------------
-----  MISC  ----
-----------------
-
 hl.config({
 	misc = {
 		force_default_wallpaper = -1, -- Set to 0 or 1 to disable the anime mascot wallpapers
 		disable_hyprland_logo = false, -- If true disables the random hyprland logo / anime girl background. :(
 	},
 })
-
----------------
----- INPUT ----
----------------
 
 hl.config({
 	input = {
@@ -149,7 +141,6 @@ hl.config({
 		repeat_rate = 20,
 
 		follow_mouse = 1,
-
 		sensitivity = 0,
 
 		touchpad = {
@@ -181,7 +172,7 @@ local mainMod = "ALT" -- Sets "Windows" key as main modifier
 hl.bind(mainMod .. " + return", hl.dsp.exec_cmd(terminal))
 hl.bind(mainMod .. " + C", hl.dsp.window.close())
 hl.bind(mainMod .. " + CTRL + L", hl.dsp.exec_cmd("hyprlock"))
-hl.bind(mainMod .. " + T", hl.dsp.exec_cmd("thunar"))
+hl.bind(mainMod .. " + T", hl.dsp.exec_cmd(fileManager))
 hl.bind(mainMod .. " + F", hl.dsp.window.fullscreen())
 hl.bind(mainMod .. " + D", hl.dsp.exec_cmd(menu))
 
@@ -231,14 +222,13 @@ hl.bind(mainMod .. " + mouse:273", hl.dsp.window.resize(), { mouse = true })
 
 -- Example window rules that are useful
 
-local suppressMaximizeRule = hl.window_rule({
+hl.window_rule({
 	-- Ignore maximize requests from all apps. You'll probably like this.
 	name = "suppress-maximize-events",
 	match = { class = ".*" },
 
 	suppress_event = "maximize",
 })
--- suppressMaximizeRule:set_enabled(false)
 
 hl.window_rule({
 	-- Fix some dragging issues with XWayland
