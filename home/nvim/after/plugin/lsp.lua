@@ -1,7 +1,6 @@
 local nix = require("camille.nix")
 local cmp = require("cmp")
 
--- Applied to every server config (see :h lspconfig-nvim-0.11)
 vim.lsp.config("*", {
 	capabilities = require("cmp_nvim_lsp").default_capabilities(),
 })
