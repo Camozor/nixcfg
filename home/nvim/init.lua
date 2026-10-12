@@ -25,8 +25,10 @@ require("lazy").setup({
 	{ "nvim-telescope/telescope.nvim", branch = "master", dependencies = { "nvim-lua/plenary.nvim" } },
 	{
 		"nvim-treesitter/nvim-treesitter",
+		branch = "main",
+		lazy = false, -- the rewrite does not support lazy-loading
 		dependencies = {
-			"nvim-treesitter/nvim-treesitter-textobjects",
+			{ "nvim-treesitter/nvim-treesitter-textobjects", branch = "main" },
 		},
 		build = ":TSUpdate",
 	},
@@ -93,6 +95,7 @@ require("lazy").setup({
 		dependencies = {
 			"nvim-lua/plenary.nvim",
 			"nvim-treesitter/nvim-treesitter",
+			"lewis6991/async.nvim", -- only needed on nvim 0.12
 		},
 		opts = {},
 	},

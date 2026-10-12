@@ -8,6 +8,8 @@
     gdb
     gnumake
 
+    tree-sitter
+
     go
     air
 

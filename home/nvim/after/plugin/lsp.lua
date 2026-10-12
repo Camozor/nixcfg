@@ -1,8 +1,10 @@
-local lspconfig = require("lspconfig")
 local nix = require("camille.nix")
 local cmp = require("cmp")
 
-local capabilities = require("cmp_nvim_lsp").default_capabilities()
+-- Applied to every server config (see :h lspconfig-nvim-0.11)
+vim.lsp.config("*", {
+	capabilities = require("cmp_nvim_lsp").default_capabilities(),
+})
 
 vim.api.nvim_create_autocmd("LspAttach", {
 	desc = "LSP Actions",
@@ -26,10 +28,10 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		end, opts)
 		vim.keymap.set("n", "<leader>vd", "<cmd>Telescope diagnostics<CR>", opts)
 		vim.keymap.set("n", "[d", function()
-			vim.diagnostic.goto_next()
+			vim.diagnostic.jump({ count = 1, float = true })
 		end, opts)
 		vim.keymap.set("n", "]d", function()
-			vim.diagnostic.goto_prev()
+			vim.diagnostic.jump({ count = -1, float = true })
 		end, opts)
 		vim.keymap.set("n", "<leader>vca", function()
 			vim.lsp.buf.code_action()
@@ -43,8 +45,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 	end,
 })
 
-lspconfig.lua_ls.setup({
-	capabilities = capabilities,
+vim.lsp.config("lua_ls", {
 	settings = {
 		Lua = {
 			runtime = {
@@ -70,8 +71,7 @@ local volar_derivation_path = nix.find_derivation_path("vue-language-server")
 local typescript_plugin_path = volar_derivation_path
 	.. "lib/node_modules/@vue/language-server/node_modules/@vue/typescript-plugin"
 
-lspconfig.ts_ls.setup({
-	capabilities = capabilities,
+vim.lsp.config("ts_ls", {
 	init_options = {
 		plugins = {
 			{
@@ -103,8 +103,8 @@ lspconfig.ts_ls.setup({
 local typescript_derivation_path = nix.find_derivation_path("tsc")
 local typescript_sdk_path = typescript_derivation_path .. "lib/node_modules/typescript/lib"
 
-lspconfig.volar.setup({
-	capabilities = capabilities,
+-- `volar` was renamed to `vue_ls`
+vim.lsp.config("vue_ls", {
 	filetypes = { "vue" },
 	init_options = {
 		typescript = {
@@ -116,8 +116,7 @@ lspconfig.volar.setup({
 	},
 })
 
-lspconfig.yamlls.setup({
-	capabilities = capabilities,
+vim.lsp.config("yamlls", {
 	settings = {
 		yaml = {
 			schemas = { kubernetes = "globPattern" },
@@ -125,8 +124,7 @@ lspconfig.yamlls.setup({
 	},
 })
 
-lspconfig.gopls.setup({
-	capabilities = capabilities,
+vim.lsp.config("gopls", {
 	filetypes = {
 		"go",
 		"gomod",
@@ -144,10 +142,20 @@ lspconfig.gopls.setup({
 	},
 })
 
-local basic_servers = { "pyright", "rust_analyzer", "nil_ls", "terraformls", "svelte", "bashls" }
-for _, server in ipairs(basic_servers) do
-	lspconfig[server].setup({ capabilities = capabilities })
-end
+vim.lsp.enable({
+	"lua_ls",
+	"ts_ls",
+	"vue_ls",
+	"yamlls",
+	"gopls",
+	-- servers used with their defaults
+	"pyright",
+	"rust_analyzer",
+	"nil_ls",
+	"terraformls",
+	"svelte",
+	"bashls",
+})
 
 vim.diagnostic.config({
 	virtual_text = {
