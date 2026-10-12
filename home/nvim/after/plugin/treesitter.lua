@@ -25,16 +25,6 @@ ts.install({
 })
 
 --------------------------------------------------------------------------------
--- Incremental selection (dropped by `main`, see lua/camille/ts_selection.lua)
---------------------------------------------------------------------------------
-
-local selection = require("camille.ts_selection")
-
-vim.keymap.set("n", "vv", selection.init, { desc = "Init treesitter selection" })
-vim.keymap.set("x", "vv", selection.increment, { desc = "Increment treesitter selection" })
-vim.keymap.set("x", "vV", selection.decrement, { desc = "Decrement treesitter selection" })
-
---------------------------------------------------------------------------------
 -- Textobjects (also `main` branch: setup + explicit keymaps)
 --------------------------------------------------------------------------------
 
