@@ -41,9 +41,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		vim.keymap.set("n", "<leader>vrn", function()
 			vim.lsp.buf.rename()
 		end, opts)
-		vim.keymap.set("i", "<leader>sh", function()
-			vim.lsp.buf.signature_help()
-		end, opts)
 	end,
 })
 
