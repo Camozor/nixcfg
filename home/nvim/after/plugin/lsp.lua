@@ -32,8 +32,11 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		vim.keymap.set("n", "]d", function()
 			vim.diagnostic.jump({ count = -1, float = true })
 		end, opts)
-		vim.keymap.set("n", "<leader>vca", function()
-			vim.lsp.buf.code_action()
+		vim.keymap.set("n", "<leader>ca", function()
+			vim.lsp.buf.code_action({
+				context = { only = { "source.organizeImports", "source.addMissingImports" } },
+				apply = true,
+			})
 		end, opts)
 		vim.keymap.set("n", "<leader>vrn", function()
 			vim.lsp.buf.rename()
