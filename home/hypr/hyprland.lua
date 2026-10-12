@@ -175,6 +175,10 @@ hl.bind(mainMod .. " + CTRL + L", hl.dsp.exec_cmd("hyprlock"))
 hl.bind(mainMod .. " + T", hl.dsp.exec_cmd(fileManager))
 hl.bind(mainMod .. " + F", hl.dsp.window.fullscreen())
 hl.bind(mainMod .. " + D", hl.dsp.exec_cmd(menu))
+hl.bind(
+	mainMod .. " + B",
+	hl.dsp.exec_cmd("brave --remote-debugging-port=9222 --user-data-dir=/tmp/chrome-impersonation")
+)
 
 -- Move focus with mainMod + vim keys
 hl.bind(mainMod .. " + H", hl.dsp.focus({ direction = "left" }))
