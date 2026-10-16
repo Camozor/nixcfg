@@ -30,7 +30,7 @@ vim.wo.signcolumn = "yes"
 
 -- Decrease update time
 vim.o.updatetime = 250
-vim.o.timeoutlen = 2000
+vim.o.timeoutlen = 400
 
 -- Set completeopt to have a better completion experience
 vim.o.completeopt = "menuone,noselect"
@@ -38,7 +38,7 @@ vim.o.completeopt = "menuone,noselect"
 -- NOTE: You should make sure your terminal supports this
 vim.o.termguicolors = true
 
-vim.opt.tabstop = 4
+vim.opt.tabstop = 2
 
 vim.opt.incsearch = true
 vim.opt.scrolloff = 8

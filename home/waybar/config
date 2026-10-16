@@ -5,11 +5,11 @@
 	"position": "top",
 
 	"modules-left": [
-		"hyprland/workspaces",
+		"ext/workspaces",
 		"custom/right-arrow-dark"
 	],
-	"hyprland/workspaces": {
-		"on-click": "activate",	
+	"ext/workspaces": {
+		"on-click": "activate"
 	},
 	"modules-center": [
 		"custom/left-arrow-dark",

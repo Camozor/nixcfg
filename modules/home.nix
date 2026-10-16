@@ -141,6 +141,7 @@ in
         kubectl = "kubecolor";
         lg = "lazygit";
         o = "xdg-open";
+        oc = "fence -- opencode";
       };
       shellGlobalAliases = {
         G = "| grep";
@@ -167,7 +168,7 @@ in
   # home.file.".config/hypr".source = ../home/hypr;
   home.file.".config/k9s".source = ../home/k9s;
   home.file.".config/kitty".source = ../home/kitty;
-  home.file.".config/nvim".source = ../home/nvim;
+  # home.file.".config/nvim".source = ../home/nvim;
   home.file.".config/tms".source = ../home/tms;
   home.file.".config/waybar".source = ../home/waybar;
   home.file.".config/wofi".source = ../home/wofi;

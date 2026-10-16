@@ -1,8 +1,50 @@
-local lsp = require("lsp-zero").preset({})
-local lspconfig = require("lspconfig")
 local nix = require("camille.nix")
+local cmp = require("cmp")
 
-lspconfig.lua_ls.setup({
+vim.lsp.config("*", {
+	capabilities = require("cmp_nvim_lsp").default_capabilities(),
+})
+
+vim.api.nvim_create_autocmd("LspAttach", {
+	desc = "LSP Actions",
+	callback = function(event)
+		local opts = { buffer = event.buf, remap = false }
+
+		vim.keymap.set("n", "gd", function()
+			vim.lsp.buf.definition()
+		end, opts)
+		vim.keymap.set("n", "gD", function()
+			vim.lsp.buf.declaration()
+		end, opts)
+		vim.keymap.set("n", "gr", function()
+			vim.lsp.buf.references()
+		end, opts)
+		vim.keymap.set("n", "gi", function()
+			vim.lsp.buf.implementation()
+		end, opts)
+		vim.keymap.set("n", "K", function()
+			vim.lsp.buf.hover()
+		end, opts)
+		vim.keymap.set("n", "<leader>vd", "<cmd>Telescope diagnostics<CR>", opts)
+		vim.keymap.set("n", "[d", function()
+			vim.diagnostic.jump({ count = 1, float = true })
+		end, opts)
+		vim.keymap.set("n", "]d", function()
+			vim.diagnostic.jump({ count = -1, float = true })
+		end, opts)
+		vim.keymap.set("n", "<leader>ca", function()
+			vim.lsp.buf.code_action({
+				context = { only = { "source.organizeImports", "source.addMissingImports" } },
+				apply = true,
+			})
+		end, opts)
+		vim.keymap.set("n", "<leader>vrn", function()
+			vim.lsp.buf.rename()
+		end, opts)
+	end,
+})
+
+vim.lsp.config("lua_ls", {
 	settings = {
 		Lua = {
 			runtime = {
@@ -28,7 +70,7 @@ local volar_derivation_path = nix.find_derivation_path("vue-language-server")
 local typescript_plugin_path = volar_derivation_path
 	.. "lib/node_modules/@vue/language-server/node_modules/@vue/typescript-plugin"
 
-lspconfig.ts_ls.setup({
+vim.lsp.config("ts_ls", {
 	init_options = {
 		plugins = {
 			{
@@ -60,7 +102,8 @@ lspconfig.ts_ls.setup({
 local typescript_derivation_path = nix.find_derivation_path("tsc")
 local typescript_sdk_path = typescript_derivation_path .. "lib/node_modules/typescript/lib"
 
-lspconfig.volar.setup({
+-- `volar` was renamed to `vue_ls`
+vim.lsp.config("vue_ls", {
 	filetypes = { "vue" },
 	init_options = {
 		typescript = {
@@ -72,15 +115,7 @@ lspconfig.volar.setup({
 	},
 })
 
-lspconfig.pyright.setup({})
-
-lspconfig.rust_analyzer.setup({})
-
-lspconfig.nil_ls.setup({})
-
-lspconfig.terraformls.setup({})
-
-lspconfig.yamlls.setup({
+vim.lsp.config("yamlls", {
 	settings = {
 		yaml = {
 			schemas = { kubernetes = "globPattern" },
@@ -88,9 +123,7 @@ lspconfig.yamlls.setup({
 	},
 })
 
-lspconfig.svelte.setup({})
-
-lspconfig.gopls.setup({
+vim.lsp.config("gopls", {
 	filetypes = {
 		"go",
 		"gomod",
@@ -108,54 +141,20 @@ lspconfig.gopls.setup({
 	},
 })
 
-lspconfig.bashls.setup({})
-
-lspconfig.hls.setup({
-	filetypes = { "haskell", "lhaskell", "cabal" },
+vim.lsp.enable({
+	"lua_ls",
+	"ts_ls",
+	"vue_ls",
+	"yamlls",
+	"gopls",
+	-- servers used with their defaults
+	"pyright",
+	"rust_analyzer",
+	"nil_ls",
+	"terraformls",
+	"svelte",
+	"bashls",
 })
-
-lsp.on_attach(function(_, bufnr)
-	local opts = { buffer = bufnr, remap = false }
-
-	vim.keymap.set("n", "gd", function()
-		vim.lsp.buf.definition()
-	end, opts)
-	vim.keymap.set("n", "gD", function()
-		vim.lsp.buf.declaration()
-	end, opts)
-	vim.keymap.set("n", "gr", function()
-		vim.lsp.buf.references()
-	end, opts)
-	vim.keymap.set("n", "gi", function()
-		vim.lsp.buf.implementation()
-	end, opts)
-	vim.keymap.set("n", "K", function()
-		vim.lsp.buf.hover()
-	end, opts)
-	vim.keymap.set("n", "<leader>vd", "<cmd>Telescope diagnostics<CR>", opts)
-	vim.keymap.set("n", "[d", function()
-		vim.diagnostic.goto_next()
-	end, opts)
-	vim.keymap.set("n", "]d", function()
-		vim.diagnostic.goto_prev()
-	end, opts)
-	vim.keymap.set("n", "<leader>vca", function()
-		vim.lsp.buf.code_action()
-	end, opts)
-	vim.keymap.set("n", "<leader>vrr", function()
-		vim.lsp.buf.references()
-	end, opts)
-	vim.keymap.set("n", "<leader>vrn", function()
-		vim.lsp.buf.rename()
-	end, opts)
-	vim.keymap.set("i", "<C-h>", function()
-		vim.lsp.buf.signature_help()
-	end, opts)
-
-	lsp.default_keymaps({ buffer = bufnr })
-end)
-
-lsp.setup()
 
 vim.diagnostic.config({
 	virtual_text = {
@@ -183,8 +182,6 @@ vim.lsp.util.open_floating_preview = function(contents, syntax, opts, ...)
 		}
 	return orig_util(contents, syntax, opts, ...)
 end
-
-local cmp = require("cmp")
 
 cmp.setup({
 	sources = {

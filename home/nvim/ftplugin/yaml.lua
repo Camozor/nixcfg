@@ -1,11 +1,9 @@
--- Basic Settings
 vim.opt_local.shiftwidth = 2 -- Number of spaces to use for each step of (auto)indent
 vim.opt_local.softtabstop = 2 -- Number of spaces that a <Tab> counts for while performing editing operations
 vim.opt_local.tabstop = 2 -- Number of spaces that a <Tab> in the file counts for
 vim.opt_local.expandtab = true -- Expand tab to 2 spaces
 
--- LSP Configuration
-require("lspconfig").yamlls.setup({
+vim.lsp.config("yamlls", {
 	settings = {
 		yaml = {
 			schemas = {
@@ -17,7 +15,6 @@ require("lspconfig").yamlls.setup({
 	},
 })
 
--- Autocompletion
 local cmp = require("cmp")
 cmp.setup.buffer({
 	sources = {

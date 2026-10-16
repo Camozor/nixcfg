@@ -22,60 +22,56 @@ require("lazy").setup({
 		end,
 	},
 	{ "numToStr/Comment.nvim", opts = {} },
-	{ "nvim-telescope/telescope.nvim", branch = "0.1.x", dependencies = { "nvim-lua/plenary.nvim" } },
+	{ "nvim-telescope/telescope.nvim", branch = "master", dependencies = { "nvim-lua/plenary.nvim" } },
 	{
 		"nvim-treesitter/nvim-treesitter",
+		branch = "main",
+		lazy = false, -- the rewrite does not support lazy-loading
 		dependencies = {
-			"nvim-treesitter/nvim-treesitter-textobjects",
+			{ "nvim-treesitter/nvim-treesitter-textobjects", branch = "main" },
 		},
 		build = ":TSUpdate",
 	},
 	-- LSP
 	{
-		"VonHeikemen/lsp-zero.nvim",
-		branch = "v2.x",
+		"neovim/nvim-lspconfig",
 		dependencies = {
 			{
-				"neovim/nvim-lspconfig",
+				"SmiteshP/nvim-navbuddy",
 				dependencies = {
-					{
-						"SmiteshP/nvim-navbuddy",
-						dependencies = {
-							"SmiteshP/nvim-navic",
-							"MunifTanjim/nui.nvim",
-						},
-						opts = { lsp = { auto_attach = true } },
-					},
+					"SmiteshP/nvim-navic",
+					"MunifTanjim/nui.nvim",
 				},
+				opts = { lsp = { auto_attach = true } },
 			},
-			-- Autocompletion
-			{ "hrsh7th/cmp-nvim-lsp" }, -- Required
-			{
-				"L3MON4D3/LuaSnip",
-				dependencies = {
-					"rafamadriz/friendly-snippets",
-					"benfowler/telescope-luasnip.nvim",
-				},
-				config = function(_, opts)
-					if opts then
-						require("luasnip").config.setup(opts)
-					end
-					vim.tbl_map(function(type)
-						require("luasnip.loaders.from_" .. type).lazy_load()
-					end, { "vscode", "snipmate", "lua" })
-
-					-- friendly-snippets - enable standardized comments snippets
-					require("luasnip").filetype_extend("typescript", { "tsdoc", "javascript", "typescript" })
-					require("luasnip").filetype_extend("javascript", { "jsdoc" })
-					require("luasnip").filetype_extend("lua", { "luadoc" })
-					require("luasnip").filetype_extend("python", { "pydoc" })
-					require("luasnip").filetype_extend("rust", { "rustdoc" })
-					require("luasnip").filetype_extend("cs", { "csharpdoc" })
-					require("luasnip").filetype_extend("java", { "javadoc" })
-					require("luasnip").filetype_extend("sh", { "shelldoc" })
-				end,
-			}, -- Required
 		},
+	},
+	-- Autocompletion
+	{ "hrsh7th/cmp-nvim-lsp" }, -- Required
+	{
+		"L3MON4D3/LuaSnip",
+		dependencies = {
+			"rafamadriz/friendly-snippets",
+			"benfowler/telescope-luasnip.nvim",
+		},
+		config = function(_, opts)
+			if opts then
+				require("luasnip").config.setup(opts)
+			end
+			vim.tbl_map(function(type)
+				require("luasnip.loaders.from_" .. type).lazy_load()
+			end, { "vscode", "snipmate", "lua" })
+
+			-- friendly-snippets - enable standardized comments snippets
+			require("luasnip").filetype_extend("typescript", { "tsdoc", "javascript", "typescript" })
+			require("luasnip").filetype_extend("javascript", { "jsdoc" })
+			require("luasnip").filetype_extend("lua", { "luadoc" })
+			require("luasnip").filetype_extend("python", { "pydoc" })
+			require("luasnip").filetype_extend("rust", { "rustdoc" })
+			require("luasnip").filetype_extend("cs", { "csharpdoc" })
+			require("luasnip").filetype_extend("java", { "javadoc" })
+			require("luasnip").filetype_extend("sh", { "shelldoc" })
+		end,
 	},
 	{
 		"nvimdev/guard.nvim",
@@ -99,6 +95,7 @@ require("lazy").setup({
 		dependencies = {
 			"nvim-lua/plenary.nvim",
 			"nvim-treesitter/nvim-treesitter",
+			"lewis6991/async.nvim", -- only needed on nvim 0.12
 		},
 		opts = {},
 	},

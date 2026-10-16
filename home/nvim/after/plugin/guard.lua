@@ -1,3 +1,9 @@
+-- guard.nvim v2 dropped `require("guard").setup()`, options live in `vim.g.guard_config`
+vim.g.guard_config = {
+	fmt_on_save = true,
+	lsp_as_default_formatter = false,
+}
+
 local ft = require("guard.filetype")
 
 ft("go"):fmt("gofmt")
@@ -7,8 +13,3 @@ ft("rust"):fmt("rustfmt")
 ft("lua"):fmt("stylua")
 ft("sh"):fmt("shfmt")
 ft("haskell"):fmt("ormolu")
-
-require("guard").setup({
-	fmt_on_save = true,
-	lsp_as_default_formatter = false,
-})
