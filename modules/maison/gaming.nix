@@ -17,10 +17,10 @@
 
     freetype
     fontconfig
-    xorg.libXrender
-    xorg.libXext
+    libxrender
+    libxext
 
-    wineWowPackages.waylandFull
+    wineWow64Packages.waylandFull
     winetricks
 
     vulkan-tools
@@ -31,6 +31,6 @@
     gamemode
     libGL
     vulkan-loader
-    xorg.libX11
+    libx11
   ];
 }
