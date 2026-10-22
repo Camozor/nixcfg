@@ -4,7 +4,6 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-26.05";
     nixpkgs-pkgs-25-05.url = "github:NixOS/nixpkgs/nixos-25.05";
-    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     home-manager = {
       url = "github:nix-community/home-manager/release-26.05";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -12,7 +11,12 @@
   };
 
   outputs =
-    { nixpkgs, nixpkgs-pkgs-25-05, nixpkgs-unstable, home-manager, ... }:
+    {
+      nixpkgs,
+      nixpkgs-pkgs-25-05,
+      home-manager,
+      ...
+    }:
     let
       system = "x86_64-linux";
       common-modules = [
@@ -40,11 +44,11 @@
         ./modules/user.nix
         ./modules/virtualisation.nix
       ];
-    in {
+    in
+    {
       nixosConfigurations = {
         "maison" = nixpkgs.lib.nixosSystem {
           specialArgs = {
-            pkgs-unstable = import nixpkgs-unstable { inherit system; };
             pkgs-25-05 = import nixpkgs-pkgs-25-05 { inherit system; };
           };
 
@@ -59,7 +63,6 @@
 
         "boulot" = nixpkgs.lib.nixosSystem {
           specialArgs = {
-            pkgs-unstable = import nixpkgs-unstable { inherit system; };
             pkgs-25-05 = import nixpkgs-pkgs-25-05 { inherit system; };
           };
 

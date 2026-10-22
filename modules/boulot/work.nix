@@ -1,4 +1,4 @@
-{ pkgs, pkgs-unstable, ... }:
+{ pkgs, ... }:
 
 {
   networking.extraHosts = ''
@@ -10,9 +10,9 @@
 
   environment.systemPackages = with pkgs; [
     teams-for-linux
-    pkgs-unstable.azure-cli
-    pkgs-unstable.opencode
-    pkgs-unstable.fence
+    azure-cli
+    opencode
+    fence
   ];
 
   security.pki.certificateFiles = [ ../../certs/rootCA.pem ];
