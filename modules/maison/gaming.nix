@@ -3,7 +3,10 @@
 {
   programs.steam = {
     enable = true;
-    extraPackages = with pkgs; [ mangohud gamemode ];
+    extraPackages = with pkgs; [
+      mangohud
+      gamemode
+    ];
     extraCompatPackages = with pkgs; [ proton-ge-bin ];
     remotePlay.openFirewall = true;
     dedicatedServer.openFirewall = true;

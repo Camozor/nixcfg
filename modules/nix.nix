@@ -1,7 +1,10 @@
 { ... }:
 
 {
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
@@ -13,8 +16,10 @@
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
-  nixpkgs.config.permittedInsecurePackages =
-    [ "beekeeper-studio-5.3.4" "docker-28.5.2" ];
+  nixpkgs.config.permittedInsecurePackages = [
+    "beekeeper-studio-5.3.4"
+    "docker-28.5.2"
+  ];
 
   documentation.dev.enable = true;
 }

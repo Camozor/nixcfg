@@ -1,4 +1,3 @@
--- guard.nvim v2 dropped `require("guard").setup()`, options live in `vim.g.guard_config`
 vim.g.guard_config = {
 	fmt_on_save = true,
 	lsp_as_default_formatter = false,

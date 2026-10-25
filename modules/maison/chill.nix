@@ -1,1 +1,5 @@
-{ pkgs, ... }: { environment.systemPackages = with pkgs; [ catt ]; }
+{ pkgs, ... }:
+
+{
+  environment.systemPackages = with pkgs; [ catt ];
+}
