@@ -12,6 +12,7 @@
     teams-for-linux
     azure-cli
     pkgs-unstable.opencode
+    pkgs-unstable.rtk
     fence
   ];
 

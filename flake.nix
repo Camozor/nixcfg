@@ -30,6 +30,8 @@
           home-manager.users.camille = import ./modules/home.nix;
         }
 
+        { nixpkgs.config.allowUnfree = true; }
+
         ./modules/bootloader.nix
         ./modules/fonts.nix
         ./modules/i18n.nix
@@ -66,7 +68,10 @@
         "boulot" = nixpkgs.lib.nixosSystem {
           specialArgs = {
             pkgs-25-05 = import nixpkgs-pkgs-25-05 { inherit system; };
-            pkgs-unstable = import nixpkgs-unstable { inherit system; };
+            pkgs-unstable = import nixpkgs-unstable {
+              inherit system;
+              config.allowUnfree = true;
+            };
           };
 
           modules = common-modules ++ [
