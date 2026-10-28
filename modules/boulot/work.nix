@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, pkgs-unstable, ... }:
 
 {
   networking.extraHosts = ''
@@ -11,7 +11,7 @@
   environment.systemPackages = with pkgs; [
     teams-for-linux
     azure-cli
-    opencode
+    pkgs-unstable.opencode
     fence
   ];
 
