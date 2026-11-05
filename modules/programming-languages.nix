@@ -30,5 +30,7 @@
 
     ghc
     ormolu
+
+    typstyle
   ];
 }

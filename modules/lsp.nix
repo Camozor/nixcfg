@@ -20,5 +20,7 @@
     bash-language-server
 
     haskell-language-server
+
+    tinymist
   ];
 }
