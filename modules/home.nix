@@ -1,4 +1,4 @@
-{ pkgs, pkgs-25-05, ... }:
+{ pkgs, ... }:
 
 let
   user = "camille";
@@ -17,7 +17,7 @@ in
   programs.home-manager.enable = true;
 
   home.packages = with pkgs; [
-    pkgs-25-05.brave
+    chromium
     libreoffice
     openvpn
     beekeeper-studio
