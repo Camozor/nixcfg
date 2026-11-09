@@ -20,6 +20,7 @@
     python3
 
     nixfmt
+    nixfmt-tree
 
     terraform
 

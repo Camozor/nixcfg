@@ -11,7 +11,7 @@ garbage:
 		sudo nix-collect-garbage -d --delete-older-than 5d
 
 fmt:
-		nixfmt .
+		treefmt .
 
 softlink:
 		ln -fs "$(pwd)/home/nvim" ~/.config/nvim
