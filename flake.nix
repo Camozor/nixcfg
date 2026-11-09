@@ -21,11 +21,20 @@
     }:
     let
       system = "x86_64-linux";
+      pkgs-unstable = import nixpkgs-unstable {
+        inherit system;
+        config.allowUnfree = true;
+      };
+      pkgs-25-05 = import nixpkgs-pkgs-25-05 {
+        inherit system;
+        config.allowUnfree = true;
+      };
       common-modules = [
         home-manager.nixosModules.home-manager
         {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
+          home-manager.extraSpecialArgs = { inherit pkgs-25-05; };
 
           home-manager.users.camille = import ./modules/home.nix;
         }
@@ -53,7 +62,7 @@
       nixosConfigurations = {
         "maison" = nixpkgs.lib.nixosSystem {
           specialArgs = {
-            pkgs-25-05 = import nixpkgs-pkgs-25-05 { inherit system; };
+            inherit pkgs-unstable pkgs-25-05;
           };
 
           modules = common-modules ++ [
@@ -67,11 +76,7 @@
 
         "boulot" = nixpkgs.lib.nixosSystem {
           specialArgs = {
-            pkgs-25-05 = import nixpkgs-pkgs-25-05 { inherit system; };
-            pkgs-unstable = import nixpkgs-unstable {
-              inherit system;
-              config.allowUnfree = true;
-            };
+            inherit pkgs-unstable pkgs-25-05;
           };
 
           modules = common-modules ++ [
