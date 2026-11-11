@@ -17,6 +17,7 @@
   environment.systemPackages = with pkgs; [
     steam-run
     heroic-unwrapped
+    lutris
 
     freetype
     fontconfig

@@ -190,19 +190,19 @@ require("lazy").setup({
 			end)
 		end,
 	},
-	{
-		"spotify",
-		dev = true,
-		lazy = false,
-		config = function(opts)
-			require("spotify").setup({ dir = opts.dir })
-		end,
-	},
-	{
-		"dbus-lua",
-		dev = true,
-		lazy = false,
-	},
+	-- {
+	-- 	"spotify",
+	-- 	dev = true,
+	-- 	lazy = false,
+	-- 	config = function(opts)
+	-- 		require("spotify").setup({ dir = opts.dir })
+	-- 	end,
+	-- },
+	-- {
+	-- 	"dbus-lua",
+	-- 	dev = true,
+	-- 	lazy = false,
+	-- },
 }, {
 	dev = {
 		path = "~/code/perso",
